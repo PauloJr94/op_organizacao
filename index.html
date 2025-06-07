@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Missões - Concursando Tático</title>
+    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Cabeçalho -->
+        <header class="header">
+            <div class="header-title">
+                <i class="fas fa-skull"></i>
+                <h1>OPERAÇÃO ORGANIZA <span>Concursando TÁTICO</span></h1>
+            </div>
+            <div class="carousel">
+                <div class="carousel-track">
+                    <div class="carousel-slide"><img src="img/logos.png" alt="logos"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Sidebar Esquerda -->
+        <aside class="sidebar-left">
+            <div class="profile">
+                <div class="badge"><img src="img/bope.png" alt="BOPE"></div>
+                <h3>Operador Tático</h3>
+                <p class="rank">Candidato Elite</p>
+            </div>
+            <!--RELOGIO-->
+            <div class="digital-clock">
+                <div class="flip-clock">
+                    <div class="flip-card-container">
+                        <div class="flip-card">1</div>
+                    </div>
+                    <div class="flip-card-container">
+                        <div class="flip-card">0</div>
+                    </div>
+                    <div class="separator">:</div>
+                    <div class="flip-card-container">
+                        <div class="flip-card">3</div>
+                    </div>
+                    <div class="flip-card-container">
+                        <div class="flip-card">2</div>
+                    </div>
+                </div>
+            <div class="current-date">Thursday, March 14, 2024</div>
+
+        <!--Proxima Missao-->   
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Próximas Missões</title>
+                <link rel="stylesheet" href="style.css">
+                <link rel="stylesheet" href="countdown.css">
+            </head>
+            <body>
+            <div class="missions-container">
+                <div class="missions-section">
+                    <div class="missions-header">
+                        <div class="header-left">
+                            <svg class="target-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <circle cx="12" cy="12" r="6"/>
+                                <circle cx="12" cy="12" r="2"/>
+                            </svg>
+                            <h3>Próximas Missões</h3>
+                        </div>
+                        <span class="missions-count">
+                            <span id="missions-counter">2</span> ativas
+                        </span>
+                    </div>
+
+                    <div class="missions-list" id="missions-list">
+                        <div class="mission-item" data-mission-id="1">
+                            <div class="mission-content">
+                                <div class="mission-left">
+                                    <div class="mission-indicator"></div>
+                                    <div class="mission-info">
+                                        <h4 class="mission-name">PF</h4>
+                                        <div class="mission-date">
+                                            <svg class="calendar-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                                <line x1="16" y1="2" x2="16" y2="6"/>
+                                                <line x1="8" y1="2" x2="8" y2="6"/>
+                                                <line x1="3" y1="10" x2="21" y2="10"/>
+                                            </svg>
+                                            <span>27/06/2025</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mission-right">
+                                    <div class="mission-time">
+                                        <svg class="clock-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="10"/>
+                                            <polyline points="12,6 12,12 16,14"/>
+                                        </svg>
+                                        <span class="time-left">19d 23h 57m</span>
+                                    </div>
+                                    <button class="delete-btn" data-mission-id="1" title="Excluir missão">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="3,6 5,6 21,6"/>
+                                            <path d="m19,6v14a2,2 0 0,1-2,2H7a2,2 0 0,1-2-2V6m3,0V4a2,2 0 0,1,2-2h4a2,2 0 0,1,2,2v2"/>
+                                            <line x1="10" y1="11" x2="10" y2="17"/>
+                                            <line x1="14" y1="11" x2="14" y2="17"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mission-item" data-mission-id="2">
+                            <div class="mission-content">
+                                <div class="mission-left">
+                                    <div class="mission-indicator"></div>
+                                    <div class="mission-info">
+                                        <h4 class="mission-name">PRF</h4>
+                                        <div class="mission-date">
+                                            <svg class="calendar-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                                <line x1="16" y1="2" x2="16" y2="6"/>
+                                                <line x1="8" y1="2" x2="8" y2="6"/>
+                                                <line x1="3" y1="10" x2="21" y2="10"/>
+                                            </svg>
+                                            <span>15/08/2025</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mission-right">
+                                    <div class="mission-time">
+                                        <svg class="clock-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="10"/>
+                                            <polyline points="12,6 12,12 16,14"/>
+                                        </svg>
+                                        <span class="time-left">68d 15h 32m</span>
+                                    </div>
+                                    <button class="delete-btn" data-mission-id="2" title="Excluir missão">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="3,6 5,6 21,6"/>
+                                            <path d="m19,6v14a2,2 0 0,1-2,2H7a2,2 0 0,1-2-2V6m3,0V4a2,2 0 0,1,2-2h4a2,2 0 0,1,2,2v2"/>
+                                            <line x1="10" y1="11" x2="10" y2="17"/>
+                                            <line x1="14" y1="11" x2="14" y2="17"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="missions-actions">
+                        <button class="add-mission-btn" id="add-mission-btn">
+                            <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                            <span>Nova Missão</span>
+                        </button>
+
+                        <div class="mission-form" id="mission-form">
+                            <div class="form-content">
+                                <input 
+                                    type="text" 
+                                    id="mission-name-input" 
+                                    placeholder="Nome da Missão (ex: PF, PRF, etc.)"
+                                    class="form-input"
+                                >
+                                <input 
+                                    type="date" 
+                                    id="mission-date-input" 
+                                    class="form-input"
+                                >
+                                <button class="submit-btn" id="submit-btn">
+                                    Adicionar Missão
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    <!-- Modal de confirmação -->
+    <div class="modal-overlay" id="delete-modal">
+        <div class="modal-content">
+            <h4>Confirmar Exclusão</h4>
+            <p>Tem certeza que deseja excluir esta missão?</p>
+            <div class="modal-actions">
+                <button class="modal-btn cancel-btn" id="cancel-delete">Cancelar</button>
+                <button class="modal-btn confirm-btn" id="confirm-delete">Excluir</button>
+            </div>
+        </div>
+    </div>
+
+            <!--MOTIVACAO-->
+            <div class="motivation">
+                <p>"Missão dada é missão cumprida."</p>
+            </div>
+            <!--POMODORO-->
+            <div class="pomodoro">
+                <h4>Tempo de Operação</h4>
+                <div id="pomodoro-timer">01:30:00</div>
+                <div class="pomodoro-controls">
+                    <button id="pomodoro-start"><i class="fas fa-play"></i></button>
+                    <button id="pomodoro-reset"><i class="fas fa-redo"></i></button>
+                </div>
+                <p>Ciclo: <span id="pomodoro-cycle">1/4</span></p>
+            </div>
+        </aside>
+
+        <!-- Conteúdo Principal -->
+        <main class="main-content">
+            <section class="mission-control">
+                <button id="start-mission" class="mission-button">
+                    <span>INICIAR MISSÃO</span>
+                    <div class="pulse"></div>
+                </button>
+            </section>
+
+            <!--CALENDARIO-->
+            <section class="calendar-section">
+                <h2><i class="fas fa-calendar-alt"></i> Calendário Operacional</h2>
+                <div class="calendar">
+                    <div class="calendar-header">
+                        <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
+                        <h3 id="current-month"></h3>
+                        <button id="next-month"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="calendar-weekdays">
+                        <div>Dom</div>
+                        <div>Seg</div>
+                        <div>Ter</div>
+                        <div>Qua</div>
+                        <div>Qui</div>
+                        <div>Sex</div>
+                        <div>Sáb</div>
+                    </div>
+                    <div class="calendar-days" id="calendar-days">
+                        <!-- Dias serão gerados por JavaScript -->
+                    </div>
+                </div>
+                <button id="add-event" class="add-event-btn">+ Adicionar Evento</button>
+            </section>
+
+            <!--CARROSSEL-->
+            <div class="weekly-missions">  <!-- forma retangular azul claro -->
+            <h2><i class="fas fa-bullseye"></i> Missões da Semana</h2>
+            <div class="carousel-container">
+                <button id="prevDay" class="carousel-button prev">‹</button>
+                   <div class="missions-container" id="weekly-tasks"> 
+                <!-- cards de dias vão aqui, cada um com .day-card -->
+                   </div>
+                   <button id="nextDay" class="carousel-button next">›</button>
+            </div>
+            </div>
+
+            <!--DESEMPENHO TATICO - MATERIAS-->
+            <section class="performance">
+                <h2><i class="fas fa-chart-line"></i> Desempenho Tático</h2>
+                <table class="performance-table">
+                    <thead>
+                        <tr>
+                            <th>Matéria</th>
+                            <th>Meta</th>
+                            <th>Status</th>
+                            <th>Nota</th>
+                            <th>Última Revisão</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Direito Constitucional</td>
+                            <td>100%</td>
+                            <td><span class="status in-progress">Em Andamento</span></td>
+                            <td>78%</td>
+                            <td id="last-review-1">28/10/2023</td>
+                        </tr>
+                        <tr>
+                            <td>Direito Administrativo</td>
+                            <td>100%</td>
+                            <td><span class="status in-progress">Em Andamento</span></td>
+                            <td>65%</td>
+                            <td id="last-review-2">25/10/2023</td>
+                        </tr>
+                        <tr>
+                            <td>Legislação Específica</td>
+                            <td>80%</td>
+                            <td><span class="status not-started">Não Iniciado</span></td>
+                            <td>0%</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+
+        <!-- Sidebar Direita -->
+        <aside class="sidebar-right">
+            <h2><i class="fas fa-file-alt"></i> Relatórios</h2>
+            <div class="reports">
+                <!--REVISAO-->
+                <div class="report-item">
+                    <div class="report-icon"><i class="fas fa-book"></i></div>
+                    <div class="report-content">
+                        <h4>Últimas Revisões</h4>
+                        <p>Direito Constitucional - Arts. 5º a 17</p>
+                        <p class="report-time">Hoje, 08:30</p>
+                    </div>
+                </div>
+                <!--QUESTOES-->
+                <div class="report-item">
+                    <div class="report-icon"><i class="fas fa-question-circle"></i></div>
+                    <div class="report-content">
+                        <h4>Questões Resolvidas</h4>
+                        <p>Total: <span id="total-questions">1.247</span> | Acertos: <span id="hit-rate">82%</span></p>
+                        <p class="report-time">Semana: <span id="week-questions">210</span> questões</p>
+                    </div>
+                </div>
+                <!--DESEMPENHO SIMULADOS-->
+                <div class="report-item">
+                    <div class="report-icon"><i class="fas fa-chart-bar"></i></div>
+                    <div class="report-content">
+                        <h4>Desempenho em Simulados</h4>
+                        <p>Último simulado: <span id="last-simulated">78%</span></p>
+                        <p class="report-time">Evolução: <span id="evolution-rate">+12%</span></p>
+                    </div>
+                </div>
+            </div>
+            <!--METAS-->
+            <div class="badges">
+                <h3><i class="fas fa-shield-alt"></i> Metas</h3>
+                <div class="badges-container">
+                    <div class="badge"><img src="img/bope.png" alt="BOPE"></div>
+                    <div class="badge"><img src="img/pf.png" alt="PF"></div>
+                    <div class="badge"><img src="img/prf.png" alt="PRF"></div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Rodapé -->
+        <footer class="footer">
+            <p>Persistência, foco e honra – até a aprovação.</p>
+            <div class="footer-icons">
+                <i class="fas fa-skull"></i>
+                <i class="fas fa-shield-alt"></i>
+                <i class="fas fa-star"></i>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script2.js"></script>
+</body>
+</html>
