@@ -370,64 +370,72 @@ document.addEventListener('DOMContentLoaded', () => {
             pomodoroCycleDisplay.textContent = "1/4";
         });
     }
-    // Calendário Funcional
-        let currentMonth = new Date().getMonth();
-        let currentYear = new Date().getFullYear();
-        let events = JSON.parse(localStorage.getItem('studyEvents')) || {};
-        
-        function renderCalendar() {
-            const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", 
-                            "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-            
-            document.getElementById('current-month').textContent = 
-                `${monthNames[currentMonth]} ${currentYear}`;
-            
-            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
-            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-            const today = new Date();
-            
-            const calendarGrid = document.getElementById('calendar-days');
-            calendarGrid.innerHTML = '';
-            
-            // Dias vazios no início
-            for (let i = 0; i < firstDay; i++) {
-                const emptyDay = document.createElement('div');
-                emptyDay.className = 'calendar-day empty';
-                calendarGrid.appendChild(emptyDay);
-            }
-            
-            // Dias do mês
-            for (let day = 1; day <= daysInMonth; day++) {
-                const dayElement = document.createElement('div');
-                dayElement.className = 'calendar-day';
-                
-                // Destacar dia atual
-                if (day === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear()) {
-                    dayElement.classList.add('today');
-                }
-                
-                const dayNumber = document.createElement('div');
-                dayNumber.className = 'calendar-day-number';
-                dayNumber.textContent = day;
-                dayElement.appendChild(dayNumber);
-                
-                // Adicionar eventos salvos
-                const eventKey = `${day}-${currentMonth + 1}-${currentYear}`;
-                if (events[eventKey]) {
-                    events[eventKey].forEach(event => {
-                        const eventElement = document.createElement('div');
-                        eventElement.className = `calendar-event ${event.type}`;
-                        eventElement.textContent = event.desc;
-                        eventElement.addEventListener('click', function() {
-                            alert(`Evento: ${event.desc}\nData: ${day}/${currentMonth + 1}/${currentYear}\nTipo: ${event.type}`);
-                        });
-                        dayElement.appendChild(eventElement);
-                    });
-                }
-                
-                calendarGrid.appendChild(dayElement);
-            }
-       }
+   // Calendário Funcional
+let currentMonth = new Date().getMonth();
+let currentYear = new Date().getFullYear();
+let events = JSON.parse(localStorage.getItem('studyEvents')) || {};
+
+const renderCalendar = () => {
+  const monthNames = [
+    "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+    "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+  ];
+
+  // Atualiza o nome do mês e ano
+  document.getElementById('current-month').textContent = `${monthNames[currentMonth]} ${currentYear}`;
+
+  // Primeira posição do mês (dia da semana em que o mês começa)
+  const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+  // Quantidade de dias do mês
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+  const today = new Date();
+
+  const calendarGrid = document.getElementById('calendar-days');
+  calendarGrid.innerHTML = '';
+
+  // Dias vazios no início do mês
+  for (let i = 0; i < firstDay; i++) {
+    const emptyDay = document.createElement('div');
+    emptyDay.className = 'calendar-day empty';
+    calendarGrid.appendChild(emptyDay);
+  }
+
+  // Dias do mês
+  for (let day = 1; day <= daysInMonth; day++) {
+    const dayElement = document.createElement('div');
+    dayElement.className = 'calendar-day';
+
+    // Destacar o dia atual
+    if (day === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear()) {
+      dayElement.classList.add('today');
+    }
+
+    const dayNumber = document.createElement('div');
+    dayNumber.className = 'calendar-day-number';
+    dayNumber.textContent = day;
+    dayElement.appendChild(dayNumber);
+
+    // Adicionar eventos salvos
+    const eventKey = `${day}-${currentMonth + 1}-${currentYear}`;
+    if (events[eventKey]) {
+      events[eventKey].forEach(event => {
+        const eventElement = document.createElement('div');
+        eventElement.className = `calendar-event ${event.type}`;
+        eventElement.textContent = event.desc;
+        eventElement.addEventListener('click', function () {
+          alert(`Evento: ${event.desc}\nData: ${day}/${currentMonth + 1}/${currentYear}\nTipo: ${event.type}`);
+        });
+        dayElement.appendChild(eventElement);
+      });
+    }
+
+    calendarGrid.appendChild(dayElement);
+  }
+};
+
+// Renderizar o calendário
+renderCalendar();
+
 
     // 📆 Missões da Semana – Com Carrossel
         const weekDays = [
