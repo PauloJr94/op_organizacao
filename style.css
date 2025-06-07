@@ -270,9 +270,13 @@ body {
 
 
 .missions-section {
+    margin-left: 3px;
+    width: 225px;
+    height: 425px;
+    margin-bottom: 50px;
     background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
     border-radius: 16px;
-    padding: 16px;
+    /*padding: 16px;*/
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     border: 1px solid rgba(59, 130, 246, 0.5);
     overflow: hidden;
@@ -280,7 +284,7 @@ body {
 }
 
 
-.missions-section::before {
+/*.missions-section::before {
     content: '';
     position: absolute;
     top: 0;
@@ -289,7 +293,7 @@ body {
     bottom: 0;
     background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.05) 100%);
     pointer-events: none;
-}
+}*/
 
 .missions-header {
     display: flex;
@@ -332,7 +336,7 @@ body {
     gap: 12px;
 }
 
-/*.mission-item {
+.mission-item {
     background: #1e293b;
     padding: 12px;
     border-radius: 12px;
@@ -349,7 +353,7 @@ body {
 .mission-item:hover {
     border-color: rgba(6, 182, 212, 0.5);
     transform: translateY(-1px);
-}*/
+}
 
 .mission-content {
     display: flex;
@@ -457,6 +461,7 @@ body {
 }
 
 .add-mission-btn {
+    margin-left: 10px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -946,11 +951,11 @@ body {
 
 .weekly-missions {
   width: 100%;
-  max-width: 1320px;
+  max-width: 1420px;
   height: 100%;
   max-height: 400px;
   margin: 0 auto;
-  padding: 10px 30px 20px 30px; /* diminuí o padding-top de 20px para 10px */
+  padding: 10px 30px 30px 20px; /* diminuí o padding-top de 20px para 10px */
   background-color: #333;
   border-radius: 5px;
   overflow: hidden;
@@ -964,7 +969,6 @@ body {
   font-size: 24px;
 }
 
-
 .carousel-container {
   position: relative;
   display: flex;
@@ -974,11 +978,11 @@ body {
 }
 
 .missions-container {
+  width: 100%;
   display: flex;
   gap: 20px;
-  overflow: hidden;
   scroll-behavior: smooth;
-  width: calc(100% - 100px); /* deixa espaço visível para os botões (2x 50px) */
+ /* width: calc(100% - 100px); /* deixa espaço visível para os botões (2x 50px) */
   padding: 10px 0;
   transition: transform 0.3s ease;
 }
@@ -995,7 +999,7 @@ body {
   transition: transform 0.3s ease;
   flex-shrink: 0;
   transform: translateY(-1px); /* sobe mais o card */
-  margin-right: 20px; /* define espaço entre cards */
+  margin-right: 5px; /* define espaço entre cards */
 }
 
 .day-card:hover {
