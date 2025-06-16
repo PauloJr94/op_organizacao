@@ -268,8 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
             pomodoroCycleDisplay.textContent = "1/4";
         });
     }
-
-    let currentMonth = new Date().getMonth(); // Mês atual
+let currentMonth = new Date().getMonth(); // Mês atual
 let currentYear = new Date().getFullYear(); // Ano atual
 let events = JSON.parse(localStorage.getItem('studyEvents')) || {};
 
@@ -360,8 +359,6 @@ document.getElementById('next-month').addEventListener('click', goToNextMonth);
 
 // Renderizar o calendário na inicialização
 renderCalendar();
-
-
 
     // 📆 Missões da Semana – Com Carrossel
         const weekDays = [
