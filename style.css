@@ -4,6 +4,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: auto;
 }
 
 :root {
@@ -163,12 +164,14 @@ body {
   align-items: center;
   gap: 10px;
   font-family: 'Arial', sans-serif;
+  overflow: hidden;
 }
 
 .flip-clock {
   display: flex;
   gap: 4px;
   align-items: center;
+  overflow: hidden;
 }
 
 .flip-card-container {
@@ -223,10 +226,11 @@ body {
 }
 
 .current-date {
-  font-size: 1rem;
+  font-size: 1,5vw;
   color: #ffffff;
   text-align: center;
   margin-top: 5px;
+  overflow: hidden;
 }
 
 @media (max-width: 480px) {
@@ -274,13 +278,14 @@ body {
     width: 225px;
     height: 425px;
     margin-bottom: 50px;
-    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+    background: #001f3d;
     border-radius: 16px;
     /*padding: 16px;*/
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     border: 1px solid rgba(59, 130, 246, 0.5);
     overflow: hidden;
     color: white;
+    overflow-y: hidden;
 }
 
 
@@ -309,25 +314,27 @@ body {
 }
 
 .target-icon {
-    color: #06b6d4;
+    color: #d4af37;
     flex-shrink: 0;
 }
 
 .missions-header h3 {
     font-size: 20px;
     font-weight: 700;
-    color: #ffffff;
+    color: #d4af37;
     margin: 0;
+    overflow: hidden;
 }
 
 .missions-count {
-    background: rgba(6, 182, 212, 0.2);
-    color: #67e8f9;
-    font-size: 14px;
+    background: #001f3d;
+    color: #d4af37;
+    font-size: 12px;
     font-weight: 500;
     padding: 6px 12px;
     border-radius: 20px;
-    border: 1px solid rgba(6, 182, 212, 0.3);
+    border: 1px solid #d4af37;
+    overflow: hidden;
 }
 
 .missions-list {
@@ -373,7 +380,7 @@ body {
 .mission-indicator {
     width: 10px;
     height: 10px;
-    background-color: #38bdf8;
+    background-color: #d4af37;
     border-radius: 50%;
 }
 
@@ -985,6 +992,7 @@ body {
  /* width: calc(100% - 100px); /* deixa espaço visível para os botões (2x 50px) */
   padding: 10px 0;
   transition: transform 0.3s ease;
+  overflow: hidden;
 }
 
 
@@ -1000,6 +1008,7 @@ body {
   flex-shrink: 0;
   transform: translateY(-1px); /* sobe mais o card */
   margin-right: 5px; /* define espaço entre cards */
+  overflow: hidden;
 }
 
 .day-card:hover {
@@ -1184,9 +1193,10 @@ body {
 }
 
 .report-icon {
-    font-size: 20px;
+    font-size: 100%;
     color: var(--accent-gold);
     margin-top: 3px;
+    overflow: hidden;
 }
 
 .report-content h4 {

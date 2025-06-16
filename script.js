@@ -19,10 +19,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 class MissionsManager {
     constructor() {
-        this.missions = [
-            { id: '1', name: 'PF', date: '2025-06-27', timeLeft: '19d 23h 57m' },
-            { id: '2', name: 'PRF', date: '2025-08-15', timeLeft: '68d 15h 32m' }
-        ];
+        // Lista de missões inicialmente vazia
+        this.missions = [];
         
         this.isFormVisible = false;
         this.missionToDelete = null;
@@ -31,6 +29,7 @@ class MissionsManager {
 
     init() {
         this.bindEvents();
+        this.renderMissions(); // Renderiza a lista de missões (inicialmente vazia)
         this.updateCounter();
         this.startTimeUpdater();
     }
@@ -40,22 +39,11 @@ class MissionsManager {
         const submitBtn = document.getElementById('submit-btn');
         const nameInput = document.getElementById('mission-name-input');
         const dateInput = document.getElementById('mission-date-input');
-        const cancelDeleteBtn = document.getElementById('cancel-delete');
-        const confirmDeleteBtn = document.getElementById('confirm-delete');
-        const modal = document.getElementById('delete-modal');
-
+        
         addBtn.addEventListener('click', () => this.toggleForm());
         submitBtn.addEventListener('click', () => this.addMission());
-        cancelDeleteBtn.addEventListener('click', () => this.hideDeleteModal());
-        confirmDeleteBtn.addEventListener('click', () => this.confirmDelete());
         
-        // Fechar modal clicando fora
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                this.hideDeleteModal();
-            }
-        });
-        
+        // Fechar formulário ao clicar no botão de "Nova Missão"
         nameInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') this.addMission();
         });
@@ -64,129 +52,26 @@ class MissionsManager {
             if (e.key === 'Enter') this.addMission();
         });
 
-        // Event delegation para botões de delete
+        // Delegação de eventos para o botão de deletar
         document.addEventListener('click', (e) => {
             if (e.target.closest('.delete-btn')) {
                 const missionId = e.target.closest('.delete-btn').dataset.missionId;
-                this.showDeleteModal(missionId);
+                this.deleteMission(missionId);
             }
         });
     }
 
-    showDeleteModal(missionId) {
-        this.missionToDelete = missionId;
-        const modal = document.getElementById('delete-modal');
-        modal.classList.add('active');
-    }
-
-    hideDeleteModal() {
-        const modal = document.getElementById('delete-modal');
-        modal.classList.remove('active');
-        this.missionToDelete = null;
-    }
-
-    confirmDelete() {
-        if (this.missionToDelete) {
-            this.deleteMission(this.missionToDelete);
-            this.hideDeleteModal();
-        }
-    }
-
-    deleteMission(missionId) {
-        const missionIndex = this.missions.findIndex(mission => mission.id === missionId);
-        
-        if (missionIndex !== -1) {
-            const missionName = this.missions[missionIndex].name;
-            this.missions.splice(missionIndex, 1);
-            this.renderMissions();
-            this.updateCounter();
-            this.showSuccess(`Missão "${missionName}" excluída com sucesso!`);
-        }
-    }
-
-    toggleForm() {
-        const form = document.getElementById('mission-form');
-        const btn = document.getElementById('add-mission-btn');
-        const btnIcon = btn.querySelector('.btn-icon');
-        const btnText = btn.querySelector('span');
-
-        this.isFormVisible = !this.isFormVisible;
-
-        if (this.isFormVisible) {
-            form.classList.add('active');
-            btn.classList.add('active');
-            btnText.textContent = 'Cancelar';
-            
-            // Focus no primeiro input
-            setTimeout(() => {
-                document.getElementById('mission-name-input').focus();
-            }, 300);
-        } else {
-            form.classList.remove('active');
-            btn.classList.remove('active');
-            btnText.textContent = 'Nova Missão';
-            this.clearForm();
-        }
-    }
-
-    addMission() {
-        const nameInput = document.getElementById('mission-name-input');
-        const dateInput = document.getElementById('mission-date-input');
-        
-        const name = nameInput.value.trim();
-        const date = dateInput.value;
-
-        if (!name || !date) {
-            this.showError('Por favor, preencha todos os campos');
-            return;
-        }
-
-        const selectedDate = new Date(date);
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-
-        if (selectedDate < today) {
-            this.showError('A data deve ser futura');
-            return;
-        }
-
-        const mission = {
-            id: Date.now().toString(),
-            name: name,
-            date: date,
-            timeLeft: this.calculateTimeLeft(selectedDate)
-        };
-
-        this.missions.push(mission);
-        this.renderMissions();
-        this.updateCounter();
-        this.toggleForm();
-        this.showSuccess('Missão adicionada com sucesso!');
-    }
-
-    calculateTimeLeft(targetDate) {
-        const now = new Date();
-        const diff = targetDate - now;
-
-        if (diff <= 0) return '0d 0h 0m';
-
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-
-        return `${days}d ${hours}h ${minutes}m`;
-    }
-
-    formatDate(dateString) {
-        const date = new Date(dateString);
-        return date.toLocaleDateString('pt-BR');
-    }
-
+    // Renderiza as missões na lista
     renderMissions() {
-        const container = document.getElementById('missions-list');
-        
-        container.innerHTML = this.missions.map(mission => `
-            <div class="mission-item" data-mission-id="${mission.id}">
+        const listContainer = document.getElementById('missions-list');
+        listContainer.innerHTML = ''; // Limpa as missões existentes (sempre que renderizar)
+
+        this.missions.forEach(mission => {
+            const missionItem = document.createElement('div');
+            missionItem.classList.add('mission-item');
+            missionItem.setAttribute('data-mission-id', mission.id);
+
+            missionItem.innerHTML = `
                 <div class="mission-content">
                     <div class="mission-left">
                         <div class="mission-indicator"></div>
@@ -221,80 +106,93 @@ class MissionsManager {
                         </button>
                     </div>
                 </div>
-            </div>
-        `).join('');
+            `;
+
+            listContainer.appendChild(missionItem);
+        });
     }
 
-    updateCounter() {
-        const counter = document.getElementById('missions-counter');
-        counter.textContent = this.missions.length;
+    // Formata a data no formato dd/mm/yyyy
+    formatDate(dateStr) {
+        const date = new Date(dateStr);
+        return date.toLocaleDateString('pt-BR');
     }
 
-    clearForm() {
-        document.getElementById('mission-name-input').value = '';
-        document.getElementById('mission-date-input').value = '';
+    // Calcula o tempo restante até a missão
+    calculateTimeLeft(dateStr) {
+        const now = new Date();
+        const target = new Date(dateStr);
+        const diffMs = target - now;
+
+        if (diffMs <= 0) return "0d 0h 0m";
+
+        const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diffMs / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diffMs / (1000 * 60)) % 60);
+
+        return `${days}d ${hours}h ${minutes}m`;
     }
 
-    startTimeUpdater() {
-        setInterval(() => {
-            this.missions.forEach(mission => {
-                const targetDate = new Date(mission.date);
-                mission.timeLeft = this.calculateTimeLeft(targetDate);
-            });
-            this.renderMissions();
-        }, 60000); // Atualiza a cada minuto
+    // Adiciona uma nova missão
+    addMission() {
+        const nameInput = document.getElementById('mission-name-input');
+        const dateInput = document.getElementById('mission-date-input');
+        const name = nameInput.value.trim();
+        const date = dateInput.value;
+
+        if (!name || !date) {
+            alert("Por favor, preencha todos os campos.");
+            return;
+        }
+
+        const newId = Date.now().toString(); // ID único baseado em timestamp
+        const timeLeft = this.calculateTimeLeft(date);
+
+        this.missions.push({
+            id: newId,
+            name,
+            date,
+            timeLeft
+        });
+
+        this.renderMissions(); // Atualiza o DOM
+        nameInput.value = '';
+        dateInput.value = '';
+        this.toggleForm();
     }
 
-    showError(message) {
-        this.showNotification(message, 'error');
-    }
-
-    showSuccess(message) {
-        this.showNotification(message, 'success');
-    }
-
-    showNotification(message, type) {
-        // Remove notificação existente
-        const existing = document.querySelector('.notification');
-        if (existing) existing.remove();
-
-        const notification = document.createElement('div');
-        notification.className = `notification ${type}`;
-        notification.textContent = message;
+    // Exclui uma missão pelo ID
+    deleteMission(missionId) {
+        // Filtra as missões removendo a missão com o id correspondente
+        this.missions = this.missions.filter(mission => mission.id !== missionId);
         
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 12px 20px;
-            border-radius: 8px;
-            color: white;
-            font-weight: 500;
-            z-index: 1000;
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-            ${type === 'error' ? 'background: #dc2626;' : 'background: #059669;'}
-        `;
+        // Atualiza a renderização
+        this.renderMissions();
+    }
 
-        document.body.appendChild(notification);
+    // Alterna a visibilidade do formulário
+    toggleForm() {
+        this.isFormVisible = !this.isFormVisible;
+        const form = document.getElementById('mission-form');
+        form.style.display = this.isFormVisible ? 'block' : 'none';
+    }
 
-        // Animação de entrada
-        setTimeout(() => {
-            notification.style.transform = 'translateX(0)';
-        }, 100);
+    // Inicia o contador de tempo (se precisar de mais funcionalidades de contagem, adicione aqui)
+    updateCounter() {
+        // Funcionalidade de contagem do tempo, se necessário
+    }
 
-        // Remove após 3 segundos
-        setTimeout(() => {
-            notification.style.transform = 'translateX(100%)';
-            setTimeout(() => notification.remove(), 300);
-        }, 3000);
+    // Inicia o atualizador de tempo, se necessário
+    startTimeUpdater() {
+        // Funcionalidade de atualização de tempo, se necessário
     }
 }
 
-// Inicializa quando o DOM estiver carregado
+// Inicializa a classe quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', () => {
-    new MissionsManager();
+    const missionsManager = new MissionsManager();
 });
+
 
     // 🧮 Contagem Regressiva
     function updateCountdown() {
@@ -370,64 +268,100 @@ document.addEventListener('DOMContentLoaded', () => {
             pomodoroCycleDisplay.textContent = "1/4";
         });
     }
-    // Calendário Funcional
-        let currentMonth = new Date().getMonth();
-        let currentYear = new Date().getFullYear();
-        let events = JSON.parse(localStorage.getItem('studyEvents')) || {};
-        
-        function renderCalendar() {
-            const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", 
-                            "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-            
-            document.getElementById('current-month').textContent = 
-                `${monthNames[currentMonth]} ${currentYear}`;
-            
-            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
-            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-            const today = new Date();
-            
-            const calendarGrid = document.getElementById('calendar-days');
-            calendarGrid.innerHTML = '';
-            
-            // Dias vazios no início
-            for (let i = 0; i < firstDay; i++) {
-                const emptyDay = document.createElement('div');
-                emptyDay.className = 'calendar-day empty';
-                calendarGrid.appendChild(emptyDay);
-            }
-            
-            // Dias do mês
-            for (let day = 1; day <= daysInMonth; day++) {
-                const dayElement = document.createElement('div');
-                dayElement.className = 'calendar-day';
-                
-                // Destacar dia atual
-                if (day === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear()) {
-                    dayElement.classList.add('today');
-                }
-                
-                const dayNumber = document.createElement('div');
-                dayNumber.className = 'calendar-day-number';
-                dayNumber.textContent = day;
-                dayElement.appendChild(dayNumber);
-                
-                // Adicionar eventos salvos
-                const eventKey = `${day}-${currentMonth + 1}-${currentYear}`;
-                if (events[eventKey]) {
-                    events[eventKey].forEach(event => {
-                        const eventElement = document.createElement('div');
-                        eventElement.className = `calendar-event ${event.type}`;
-                        eventElement.textContent = event.desc;
-                        eventElement.addEventListener('click', function() {
-                            alert(`Evento: ${event.desc}\nData: ${day}/${currentMonth + 1}/${currentYear}\nTipo: ${event.type}`);
-                        });
-                        dayElement.appendChild(eventElement);
-                    });
-                }
-                
-                calendarGrid.appendChild(dayElement);
-            }
-       }
+
+    let currentMonth = new Date().getMonth(); // Mês atual
+let currentYear = new Date().getFullYear(); // Ano atual
+let events = JSON.parse(localStorage.getItem('studyEvents')) || {};
+
+// Função para renderizar o calendário
+const renderCalendar = () => {
+  const monthNames = [
+    "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+    "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+  ];
+
+  // Atualiza o nome do mês e ano no cabeçalho
+  document.getElementById('current-month').textContent = `${monthNames[currentMonth]} ${currentYear}`;
+
+  // Primeira posição do mês (dia da semana em que o mês começa)
+  const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+  // Quantidade de dias no mês
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+  const today = new Date();
+
+  const calendarGrid = document.getElementById('calendar-days');
+  calendarGrid.innerHTML = ''; // Limpar a grid antes de renderizar novamente
+
+  // Dias vazios no início do mês
+  for (let i = 0; i < firstDay; i++) {
+    const emptyDay = document.createElement('div');
+    emptyDay.className = 'calendar-day empty';
+    calendarGrid.appendChild(emptyDay);
+  }
+
+  // Dias do mês
+  for (let day = 1; day <= daysInMonth; day++) {
+    const dayElement = document.createElement('div');
+    dayElement.className = 'calendar-day';
+
+    // Destacar o dia atual
+    if (day === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear()) {
+      dayElement.classList.add('today');
+    }
+
+    const dayNumber = document.createElement('div');
+    dayNumber.className = 'calendar-day-number';
+    dayNumber.textContent = day;
+    dayElement.appendChild(dayNumber);
+
+    // Adicionar eventos salvos
+    const eventKey = `${day}-${currentMonth + 1}-${currentYear}`;
+    if (events[eventKey]) {
+      events[eventKey].forEach(event => {
+        const eventElement = document.createElement('div');
+        eventElement.className = `calendar-event ${event.type}`;
+        eventElement.textContent = event.desc;
+        eventElement.addEventListener('click', function () {
+          alert(`Evento: ${event.desc}\nData: ${day}/${currentMonth + 1}/${currentYear}\nTipo: ${event.type}`);
+        });
+        dayElement.appendChild(eventElement);
+      });
+    }
+
+    calendarGrid.appendChild(dayElement);
+  }
+};
+
+// Função para ir para o mês anterior
+const goToPrevMonth = () => {
+  if (currentMonth === 0) {
+    currentMonth = 11; // Dezembro
+    currentYear--; // Decrementar o ano
+  } else {
+    currentMonth--;
+  }
+  renderCalendar();
+};
+
+// Função para ir para o próximo mês
+const goToNextMonth = () => {
+  if (currentMonth === 11) {
+    currentMonth = 0; // Janeiro
+    currentYear++; // Incrementar o ano
+  } else {
+    currentMonth++;
+  }
+  renderCalendar();
+};
+
+// Adicionar event listeners para as setas de navegação
+document.getElementById('prev-month').addEventListener('click', goToPrevMonth);
+document.getElementById('next-month').addEventListener('click', goToNextMonth);
+
+// Renderizar o calendário na inicialização
+renderCalendar();
+
+
 
     // 📆 Missões da Semana – Com Carrossel
         const weekDays = [
