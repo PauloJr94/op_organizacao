@@ -17,182 +17,332 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-class MissionsManager {
-    constructor() {
-        // Lista de missões inicialmente vazia
-        this.missions = [];
-        
-        this.isFormVisible = false;
-        this.missionToDelete = null;
-        this.init();
-    }
+    class MissionsManager {
+        constructor() {
+            this.missions = [];
+            this.isFormVisible = false;
+            this.deleteModalData = null;
 
-    init() {
-        this.bindEvents();
-        this.renderMissions(); // Renderiza a lista de missões (inicialmente vazia)
-        this.updateCounter();
-        this.startTimeUpdater();
-    }
+            // Elementos DOM
+            this.widget = document.getElementById('missions-widget');
+            this.addBtn = document.getElementById('add-btn');
+            this.form = document.getElementById('mission-form');
+            this.closeFormBtn = document.getElementById('close-form');
+            this.cancelFormBtn = document.getElementById('cancel-form');
+            this.addForm = document.getElementById('add-mission-form');
+            this.nameInput = document.getElementById('mission-name');
+            this.dateInput = document.getElementById('mission-date');
+            this.missionsList = document.getElementById('missions-list');
+            this.emptyState = document.getElementById('empty-state');
+            this.counter = document.getElementById('missions-counter');
+            this.deleteModal = document.getElementById('delete-modal');
+            this.deleteModalName = document.getElementById('delete-mission-name');
+            this.modalClose = document.getElementById('modal-close');
+            this.modalCancel = document.getElementById('modal-cancel');
+            this.modalConfirm = document.getElementById('modal-confirm');
 
-    bindEvents() {
-        const addBtn = document.getElementById('add-mission-btn');
-        const submitBtn = document.getElementById('submit-btn');
-        const nameInput = document.getElementById('mission-name-input');
-        const dateInput = document.getElementById('mission-date-input');
-        
-        addBtn.addEventListener('click', () => this.toggleForm());
-        submitBtn.addEventListener('click', () => this.addMission());
-        
-        // Fechar formulário ao clicar no botão de "Nova Missão"
-        nameInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') this.addMission();
-        });
-        
-        dateInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') this.addMission();
-        });
 
-        // Delegação de eventos para o botão de deletar
-        document.addEventListener('click', (e) => {
-            if (e.target.closest('.delete-btn')) {
-                const missionId = e.target.closest('.delete-btn').dataset.missionId;
-                this.deleteMission(missionId);
-            }
-        });
-    }
+            // Configurar data mínima
+            this.dateInput.min = new Date().toISOString().split('T')[0];
 
-    // Renderiza as missões na lista
-    renderMissions() {
-        const listContainer = document.getElementById('missions-list');
-        listContainer.innerHTML = ''; // Limpa as missões existentes (sempre que renderizar)
+            // Event listeners
+            this.addBtn.addEventListener('click', () => this.toggleForm());
+            this.closeFormBtn.addEventListener('click', () => this.hideForm());
+            this.cancelFormBtn.addEventListener('click', () => this.hideForm());
 
-        this.missions.forEach(mission => {
-            const missionItem = document.createElement('div');
-            missionItem.classList.add('mission-item');
-            missionItem.setAttribute('data-mission-id', mission.id);
+            // ===== CORREÇÃO AQUI: listener único e correto para submit =====
+            this.addForm.addEventListener('submit', (e) => {
+                e.preventDefault();
 
-            missionItem.innerHTML = `
-                <div class="mission-content">
-                    <div class="mission-left">
-                        <div class="mission-indicator"></div>
-                        <div class="mission-info">
-                            <h4 class="mission-name">${mission.name}</h4>
-                            <div class="mission-date">
-                                <svg class="calendar-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                                    <line x1="16" y1="2" x2="16" y2="6"/>
-                                    <line x1="8" y1="2" x2="8" y2="6"/>
-                                    <line x1="3" y1="10" x2="21" y2="10"/>
-                                </svg>
-                                <span>${this.formatDate(mission.date)}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mission-right">
-                        <div class="mission-time">
-                            <svg class="clock-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"/>
-                                <polyline points="12,6 12,12 16,14"/>
-                            </svg>
-                            <span class="time-left">${mission.timeLeft}</span>
-                        </div>
-                        <button class="delete-btn" data-mission-id="${mission.id}" title="Excluir missão">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="3,6 5,6 21,6"/>
-                                <path d="m19,6v14a2,2 0 0,1-2,2H7a2,2 0 0,1-2-2V6m3,0V4a2,2 0 0,1,2-2h4a2,2 0 0,1,2,2v2"/>
-                                <line x1="10" y1="11" x2="10" y2="17"/>
-                                <line x1="14" y1="11" x2="14" y2="17"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            `;
+                const name = this.nameInput.value.trim();
+                const date = this.dateInput.value;
 
-            listContainer.appendChild(missionItem);
-        });
-    }
+                if (!name || !date) {
+                    alert("Por favor, preencha o nome e a data antes de salvar.");
+                    return;
+                }
 
-    // Formata a data no formato dd/mm/yyyy
-    formatDate(dateStr) {
-        const date = new Date(dateStr);
-        return date.toLocaleDateString('pt-BR');
-    }
+                this.addMission(name, date);
+                this.hideForm();
+            });
+            // ===============================================================
 
-    // Calcula o tempo restante até a missão
-    calculateTimeLeft(dateStr) {
-        const now = new Date();
-        const target = new Date(dateStr);
-        const diffMs = target - now;
+            this.modalClose.addEventListener('click', () => this.hideDeleteModal());
+            this.modalCancel.addEventListener('click', () => this.hideDeleteModal());
+            this.modalConfirm.addEventListener('click', () => this.confirmDelete());
 
-        if (diffMs <= 0) return "0d 0h 0m";
-
-        const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diffMs / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((diffMs / (1000 * 60)) % 60);
-
-        return `${days}d ${hours}h ${minutes}m`;
-    }
-
-    // Adiciona uma nova missão
-    addMission() {
-        const nameInput = document.getElementById('mission-name-input');
-        const dateInput = document.getElementById('mission-date-input');
-        const name = nameInput.value.trim();
-        const date = dateInput.value;
-
-        if (!name || !date) {
-            alert("Por favor, preencha todos os campos.");
-            return;
+            // Carregar missões salvas
+            this.loadMissions();
+            this.updateDisplay();
+            this.startTimeUpdater();
         }
 
-        const newId = Date.now().toString(); // ID único baseado em timestamp
-        const timeLeft = this.calculateTimeLeft(date);
+        toggleForm() {
+            if (this.isFormVisible) {
+                this.hideForm();
+            } else {
+                this.showForm();
+            }
+        }
 
-        this.missions.push({
-            id: newId,
-            name,
-            date,
-            timeLeft
-        });
+        showForm() {
+            this.isFormVisible = true;
+            this.form.style.display = 'block';
+            this.updateWidgetHeight();
+            this.nameInput.focus();
+        }
 
-        this.renderMissions(); // Atualiza o DOM
-        nameInput.value = '';
-        dateInput.value = '';
-        this.toggleForm();
+        hideForm() {
+            this.isFormVisible = false;
+            this.form.style.display = 'none';
+            this.nameInput.value = '';
+            this.dateInput.value = '';
+            this.updateWidgetHeight();
+        }
+
+        handleSubmit(e) {
+            e.preventDefault();
+            const name = this.nameInput.value.trim();
+            const date = this.dateInput.value;
+
+            if (name && date) {
+                this.addMission(name, date);
+                this.hideForm();
+            }
+        }
+
+        addMission(name, date) {
+            const mission = {
+                id: Date.now().toString(),
+                name,
+                date,
+                createdAt: new Date().toISOString()
+            };
+
+            this.missions.push(mission);
+            this.sortMissions();
+            this.saveMissions();
+            this.updateDisplay();
+        }
+
+        deleteMission(id) {
+            console.log('Deleting mission with id:', id);
+            this.missions = this.missions.filter(m => m.id !== id);
+            this.saveMissions();
+            this.updateDisplay();
+        }
+
+
+        sortMissions() {
+            this.missions.sort((a, b) => new Date(a.date) - new Date(b.date));
+        }
+
+        showDeleteModal(mission) {
+            this.deleteModalData = mission;
+            this.deleteModalName.textContent = `"${mission.name}"`;
+            this.deleteModal.style.display = 'flex'; // ou 'block', dependendo do seu CSS
+        }
+
+        hideDeleteModal() {
+            console.log('hideDeleteModal called', this.deleteModal);
+            this.deleteModalData = null;
+            if (this.deleteModal) {
+                this.deleteModal.style.display = 'none';
+            }
+        }
+
+        confirmDelete() {
+            console.log('Confirm delete clicked', this.deleteModalData);
+            if (this.deleteModalData && this.deleteModalData.id) {
+                this.deleteMission(this.deleteModalData.id);
+                this.hideDeleteModal();
+            } else {
+                console.warn('No mission selected to delete or invalid id.');
+            }
+        }
+
+
+        calculateTimeLeft(dateString) {
+            const target = new Date(dateString + 'T00:00:00');
+            const now = new Date();
+            const diffMs = target.getTime() - now.getTime();
+
+            if (diffMs <= 0) {
+                return { days: 0, hours: 0, minutes: 0, seconds: 0, isExpired: true };
+            }
+
+            const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diffMs / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diffMs / (1000 * 60)) % 60);
+            const seconds = Math.floor((diffMs / 1000) % 60);
+
+            return { days, hours, minutes, seconds, isExpired: false };
+        }
+
+        formatTimeLeft(timeLeft) {
+            if (timeLeft.isExpired) return 'Expirado';
+
+            const parts = [];
+            if (timeLeft.days > 0) parts.push(`${timeLeft.days}d`);
+            if (timeLeft.hours > 0) parts.push(`${timeLeft.hours}h`);
+            if (timeLeft.minutes > 0) parts.push(`${timeLeft.minutes}m`);
+
+            return parts.join(' ') || '0m';
+        }
+
+        getTimeLeftColor(timeLeft) {
+            if (timeLeft.isExpired) return 'time-red';
+            if (timeLeft.days === 0) return 'time-yellow';
+            return 'time-green';
+        }
+
+        formatDate(dateStr) {
+            return new Date(dateStr).toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+        }
+
+        updateWidgetHeight() {
+            const baseHeight = 140; // Header + botão + padding
+            const formHeight = this.isFormVisible ? 120 : 0;
+            const missionHeight = 70;
+            const maxMissions = 4;
+
+            const activeMissions = this.missions.filter(m => !this.calculateTimeLeft(m.date).isExpired);
+            const visibleMissions = Math.min(activeMissions.length, maxMissions);
+            const missionsHeight = visibleMissions * missionHeight;
+            const emptyStateHeight = activeMissions.length === 0 ? 80 : 0;
+
+            const totalHeight = baseHeight + formHeight + Math.max(missionsHeight, emptyStateHeight);
+            this.widget.style.height = `${totalHeight}px`;
+        }
+
+        updateDisplay() {
+            // Filtra as missões que ainda não expiraram
+            const activeMissions = this.missions.filter(m => !this.calculateTimeLeft(m.date).isExpired);
+
+            // Limpa a lista atual na interface
+            this.missionsList.innerHTML = '';
+
+            // Exibe o estado vazio se não houver missões
+            if (activeMissions.length === 0) {
+                this.emptyState.style.display = 'flex';
+                return;
+            } else {
+                this.emptyState.style.display = 'none';
+            }
+
+            // Para cada missão ativa, cria um elemento visual
+            activeMissions.forEach((mission) => {
+                const missionEl = document.createElement('div');
+                missionEl.className = 'mission-item';
+                missionEl.innerHTML = `
+                    <div class="mission-info">
+                        <strong>${mission.name}</strong>
+                        <span>${mission.date}</span>
+                    </div>
+                    <button class="delete-btn" data-id="${mission.id}">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                `;
+
+                // Evento de exclusão
+                const deleteBtn = missionEl.querySelector('.delete-btn');
+                deleteBtn.addEventListener('click', () => {
+                    this.showDeleteModal(mission);
+                });
+
+                this.missionsList.appendChild(missionEl);
+            });
+
+            // Atualizar contador
+            this.counter.textContent = activeMissions.length;
+
+            // Limpar lista
+            this.missionsList.innerHTML = '';
+
+            if (activeMissions.length === 0) {
+                // Mostrar estado vazio
+                const emptyDiv = document.createElement('div');
+                emptyDiv.className = 'empty-state';
+                emptyDiv.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <circle cx="12" cy="12" r="6"/>
+                        <circle cx="12" cy="12" r="2"/>
+                    </svg>
+                    <p>Nenhuma missão ativa</p>
+                `;
+                this.missionsList.appendChild(emptyDiv);
+            } else {
+                // Adicionar scroll se necessário
+                if (activeMissions.length > 4) {
+                    this.missionsList.classList.add('scrollable');
+                } else {
+                    this.missionsList.classList.remove('scrollable');
+                }
+
+                // Renderizar missões
+                activeMissions.forEach(mission => {
+                    const timeLeft = this.calculateTimeLeft(mission.date);
+                    const missionDiv = document.createElement('div');
+                    missionDiv.className = 'mission-item';
+
+                    missionDiv.innerHTML = `
+                        <div class="mission-header">
+                            <div class="mission-name">${mission.name}</div>
+                            <button class="delete-btn" data-mission-id="${mission.id}">
+                                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3,6 5,6 21,6"/>
+                                    <path d="m19,6v14a2,2 0 0,1-2,2H7a2,2 0 0,1-2-2V6m3,0V4a2,2 0 0,1,2-2h4a2,2 0 0,1,2,2v2"/>
+                                    <line x1="10" y1="11" x2="10" y2="17"/>
+                                    <line x1="14" y1="11" x2="14" y2="17"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="mission-date">${this.formatDate(mission.date)}</div>
+                        <div class="mission-time ${this.getTimeLeftColor(timeLeft)}">${this.formatTimeLeft(timeLeft)}</div>
+                    `;
+
+                    // Adicionar event listener para o botão de deletar
+                    const deleteBtn = missionDiv.querySelector('.delete-btn');
+                    deleteBtn.addEventListener('click', () => this.showDeleteModal(mission));
+
+                    this.missionsList.appendChild(missionDiv);
+                });
+            }
+
+            this.updateWidgetHeight();
+        }
+
+        startTimeUpdater() {
+            setInterval(() => {
+                this.updateDisplay();
+            }, 1000);
+        }
+
+        saveMissions() {
+            localStorage.setItem('missions', JSON.stringify(this.missions));
+        }
+
+        loadMissions() {
+            const saved = localStorage.getItem('missions');
+            if (saved) {
+                try {
+                    this.missions = JSON.parse(saved);
+                    this.sortMissions();
+                } catch (error) {
+                    console.error('Erro ao carregar missões:', error);
+                    this.missions = [];
+                }
+            }
+        }
     }
 
-    // Exclui uma missão pelo ID
-    deleteMission(missionId) {
-        // Filtra as missões removendo a missão com o id correspondente
-        this.missions = this.missions.filter(mission => mission.id !== missionId);
-        
-        // Atualiza a renderização
-        this.renderMissions();
-    }
-
-    // Alterna a visibilidade do formulário
-    toggleForm() {
-        this.isFormVisible = !this.isFormVisible;
-        const form = document.getElementById('mission-form');
-        form.style.display = this.isFormVisible ? 'block' : 'none';
-    }
-
-    // Inicia o contador de tempo (se precisar de mais funcionalidades de contagem, adicione aqui)
-    updateCounter() {
-        // Funcionalidade de contagem do tempo, se necessário
-    }
-
-    // Inicia o atualizador de tempo, se necessário
-    startTimeUpdater() {
-        // Funcionalidade de atualização de tempo, se necessário
-    }
-}
-
-// Inicializa a classe quando o DOM estiver pronto
-document.addEventListener('DOMContentLoaded', () => {
-    const missionsManager = new MissionsManager();
-});
-
+    // Inicializar quando a página carregar
+    const missionManager = new MissionsManager();
 
     // 🧮 Contagem Regressiva
     function updateCountdown() {

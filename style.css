@@ -4,7 +4,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow: auto;
 }
 
 :root {
@@ -29,7 +28,7 @@ body {
 
 .container {
     display: grid;
-    grid-template-columns: 250px 1fr 250px;
+    grid-template-columns: 230px 1fr 200px;
     grid-template-rows: auto 1fr auto;
     grid-template-areas:
         "header header header"
@@ -118,24 +117,14 @@ body {
     grid-area: sidebar-left;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     background-color: var(--dark-gray);
     border: 1px solid var(--medium-gray);
     border-radius: 5px;
-    padding: 10px;
-    width: 250px; /* Defina a largura fixa da sidebar */
-    max-width: 100%; /* Garante que a sidebar não ultrapasse a largura da tela */
-    overflow-x: hidden; /* Evita a rolagem horizontal indesejada */
+    padding: 20px;
+    align-items: center; /* <<< Esta linha centraliza todos os filhos */
 }
 
-/* Ajustes para dispositivos móveis (telas menores) */
-@media screen and (max-width: 768px) {
-    .sidebar-left {
-        width: 100%; /* Sidebar ocupa 100% da tela em dispositivos menores */
-        position: relative; /* Remove o posicionamento fixo para se adaptar melhor */
-        height: auto; /* Ajuste a altura conforme o conteúdo */
-    }
-}
 
 .profile {
     display: flex;
@@ -176,14 +165,12 @@ body {
   align-items: center;
   gap: 10px;
   font-family: 'Arial', sans-serif;
-  overflow: hidden;
 }
 
 .flip-clock {
   display: flex;
   gap: 4px;
   align-items: center;
-  overflow: hidden;
 }
 
 .flip-card-container {
@@ -238,11 +225,10 @@ body {
 }
 
 .current-date {
-  font-size: 1,5vw;
+  font-size: 1rem;
   color: #ffffff;
   text-align: center;
   margin-top: 5px;
-  overflow: hidden;
 }
 
 @media (max-width: 480px) {
@@ -267,56 +253,32 @@ body {
 }
 
 /* Reset de margem e padding para evitar inconsistências */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: #111827;
+    background: #001f3d;
     color: #ffffff;
     min-height: 100vh;
-    display: flex;
-    align-items: center;
+    display: block;
+   /* align-items: center;
     justify-content: center;
     padding: 40px; /* antes estava 200px */
 }
 
-
-.missions-section {
-    margin-left: 3px;
-    width: 220px;
-    height: 425px;
-    margin-bottom: 50px;
-    background: #001f3d;
+.missions-widget {
+    margin-left: 150px;
+    width: 158px;
+    background: linear-gradient(to bottom, #1e3a8a, #1e40af);
     border-radius: 16px;
-    /*padding: 16px;*/
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(59, 130, 246, 0.5);
-    overflow: hidden;
-    color: white;
-    overflow-y: hidden;
+    padding: 12px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transition: height 0.3s ease;
 }
 
-
-/*.missions-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.05) 100%);
-    pointer-events: none;
-}*/
-
-.missions-header {
+.header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 16px;
+    justify-content: space-between;
+    margin-bottom: 12px;
 }
 
 .header-left {
@@ -326,366 +288,396 @@ body {
 }
 
 .target-icon {
-    color: #d4af37;
-    flex-shrink: 0;
+    color: #fbbf24;
 }
 
-.missions-header h3 {
-    font-size: 20px;
+.header-title {
+    color: #fbbf24;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.counter {
+    background: #fbbf24;
+    color: #1e3a8a;
+    padding: 4px 8px;
+    border-radius: 9999px;
+    font-size: 12px;
     font-weight: 700;
-    color: #d4af37;
-    margin: 0;
-    overflow: hidden;
 }
 
-.missions-count {
-    background: #001f3d;
-    color: #d4af37;
+.missions-title {
+    color: #fbbf24;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.add-btn {
+    width: 100%;
+    background: #10b981;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: 12px;
+    transition: background-color 0.2s;
+}
+
+.add-btn:hover {
+    background: #059669;
+}
+
+.mission-form {
+    background: #1d4ed8;
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 12px;
+}
+
+.form-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.form-header span {
+    color: white;
     font-size: 12px;
     font-weight: 500;
-    padding: 6px 12px;
-    border-radius: 20px;
-    border: 1px solid #d4af37;
-    overflow: hidden;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #93c5fd;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 0;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-btn:hover {
+    color: white;
+}
+
+.mission-form input {
+    width: 100%;
+    padding: 4px 8px;
+    font-size: 12px;
+    background: white;
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    outline: none;
+}
+
+.mission-form input:focus {
+    box-shadow: 0 0 0 2px #fbbf24;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 4px;
+}
+
+.save-btn {
+    flex: 1;
+    background: #10b981;
+    color: white;
+    border: none;
+    padding: 4px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.save-btn:hover {
+    background: #059669;
+}
+
+.cancel-btn {
+    background: #6b7280;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.cancel-btn:hover {
+    background: #4b5563;
 }
 
 .missions-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
+}
+
+.missions-list.scrollable {
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.missions-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.missions-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+.missions-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
 }
 
 .mission-item {
-    background: #1e293b;
-    padding: 12px;
-    border-radius: 12px;
+    background: #1d4ed8;
+    border-radius: 8px;
+    padding: 8px;
+    position: relative;
+    /*group: hover;*/
+}
+
+.mission-header {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
-    color: white;
-}
-
-.mission-item:last-child {
-    margin-bottom: 0;
-}
-
-.mission-item:hover {
-    border-color: rgba(6, 182, 212, 0.5);
-    transform: translateY(-1px);
-}
-
-.mission-content {
-    display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
-.mission-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-grow: 1;
-}
-
-.mission-indicator {
-    width: 10px;
-    height: 10px;
-    background-color: #d4af37;
-    border-radius: 50%;
-}
-
-@keyframes pulse {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.5;
-    }
-}
-
-.mission-info {
-    display: flex;
-    flex-direction: column;
-}
-
-.mission-info h4 {
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 16px;
     margin-bottom: 4px;
 }
 
-.mission-date {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 14px;
-    color: #cbd5e1;
-}
-
-.calendar-icon {
-    color: #93c5fd;
-    flex-shrink: 0;
-}
-
-.mission-right {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-.mission-time {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 14px;
-    color: #cbd5e1;
-}
-
-.clock-icon {
-    color: #fbbf24;
-    flex-shrink: 0;
+.mission-name {
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 4px;
 }
 
 .delete-btn {
-    background: rgba(239, 68, 68, 0.2);
-    border: 1px solid rgba(239, 68, 68, 0.3);
-    border-radius: 8px;
-    padding: 8px;
+    background: none;
+    border: none;
     color: #fca5a5;
     cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0.7;
+    opacity: 0;
+    transition: opacity 0.2s;
+    padding: 2px;
+}
+
+.mission-item:hover .delete-btn {
+    opacity: 1;
 }
 
 .delete-btn:hover {
-    background: rgba(239, 68, 68, 0.3);
-    border-color: rgba(239, 68, 68, 0.5);
-    color: #ef4444;
-    opacity: 1;
-    transform: scale(1.05);
+    color: #f87171;
 }
 
-.delete-btn:active {
-    transform: scale(0.95);
-}
-
-.missions-actions {
-    margin-top: 20px;
-}
-
-.add-mission-btn {
-    margin-left: 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background-color: #22c55e;
-    color: white;
-    border: none;
-    padding: 10px 16px;
-    border-radius: 8px;
-    font-size: 14px;
-    cursor: pointer;
-    margin-bottom: 12px;
-    transition: background 0.2s ease-in-out;
-}
-
-.add-mission-btn:hover {
-    background-color: #16a34a;
-}
-
-.add-mission-btn:active {
-    transform: translateY(0);
-}
-
-.btn-icon {
-    transition: transform 0.2s ease;
-}
-
-.add-mission-btn.active .btn-icon {
-    transform: rotate(45deg);
-}
-
-.mission-form {
-    display: none;
-}
-
-.mission-form.active {
-    max-height: 300px;
-    margin-top: 16px;
-}
-
-.form-content {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.form-input {
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    font-size: 14px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.form-input:focus {
-    outline: none;
-    border-color: #06b6d4;
-    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
-}
-
-.form-input::placeholder {
+.mission-date {
     color: #93c5fd;
+    font-size: 12px;
+    margin-bottom: 4px;
 }
 
-.form-input::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-    cursor: pointer;
+.mission-time {
+    font-size: 12px;
+    font-weight: 500;
 }
 
-.submit-btn {
-    background-color: #2563eb;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background 0.2s ease-in-out;
+.time-green { color: #86efac; }
+.time-yellow { color: #fde047; }
+.time-red { color: #fca5a5; }
+
+.empty-state {
+    text-align: center;
+    color: #93c5fd;
+    font-size: 12px;
+    padding: 24px 0;
 }
 
-.submit-btn:hover {
-    background-color: #1d4ed8;
+.empty-state svg {
+    margin: 0 auto 8px;
+    opacity: 0.5;
 }
 
-.submit-btn:active {
-    transform: translateY(0);
-}
-
-/* Modal de confirmação */
+/* Modal Styles */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.6);
-    display: none;
-    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
     align-items: center;
+    justify-content: center;
+    padding: 16px;
+    z-index: 1000;
 }
 
-.modal-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.modal-content {
+.modal {
     background: white;
-    padding: 24px;
-    border-radius: 12px;
-    text-align: center;
-    max-width: 300px;
-    width: 90%;
+    border-radius: 8px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    max-width: 320px;
+    width: 100%;
 }
 
-.modal-overlay.active .modal-content {
-    transform: scale(1);
+.modal-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px;
+    border-bottom: 1px solid #e5e7eb;
 }
 
-.modal-content h4 {
-    color: #ffffff;
-    font-size: 18px;
+.modal-header svg {
+    color: #dc2626;
+}
+
+.modal-header h3 {
+    font-size: 14px;
     font-weight: 600;
+    color: #111827;
+    flex: 1;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close:hover {
+    color: #374151;
+}
+
+.modal-body {
+    padding: 16px;
+}
+
+.modal-body p {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+
+.modal-body .mission-name {
+    font-weight: 500;
+    color: #111827;
+    font-size: 14px;
     margin-bottom: 12px;
 }
 
-.modal-content p {
-    color: #93c5fd;
-    margin-bottom: 20px;
-    line-height: 1.5;
-}
-
-.modal-actions {
+.modal-footer {
     display: flex;
-    justify-content: space-between;
-    margin-top: 16px;
+    gap: 8px;
+    padding: 16px;
+    border-top: 1px solid #e5e7eb;
 }
 
-.modal-btn {
-    padding: 8px 16px;
+.modal-cancel {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    color: #374151;
+    background: white;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.modal-cancel:hover {
+    background: #f9fafb;
+}
+
+.modal-confirm {
+    flex: 1;
+    padding: 8px 12px;
+    background: #dc2626;
+    color: white;
     border: none;
     border-radius: 6px;
+    font-size: 14px;
     cursor: pointer;
-    font-weight: bold;
+    transition: background-color 0.2s;
 }
 
-.cancel-btn {
-    background: #e5e7eb;
+.modal-confirm:hover {
+    background: #b91c1c;
 }
 
-.cancel-btn:hover {
-    background: rgba(75, 85, 99, 0.7);
-    color: #ffffff;
-}
-
-.confirm-btn {
-    background: #ef4444;
-    color: white;
-}
-
-.confirm-btn:hover {
-    background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
-    transform: translateY(-1px);
-}
-
-@media (max-width: 640px) {
-    .missions-section {
-        padding: 20px;
-    }
-    
-    .missions-header h3 {
-        font-size: 18px;
-    }
-    
-    .mission-content {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-    }
-    
-    .mission-right {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-    .mission-time {
-        justify-content: flex-start;
-    }
-    
-    .modal-content {
-        margin: 20px;
-    }
-    
-    .modal-actions {
-        flex-direction: column;
-    }
-}
 
 .motivation {
     max-width: 210px;
     width: 100%;
     max-height: 80px;
     height: 100%;
+}
+
+.current-date {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.countdown {
+    background-color: #002b57;
+    width: 210px;
+    height: 75px;
+    border-radius: 5px;
+    border: 1px solid var(--accent-gold);
+    text-align: center;
+}
+
+.countdown h4 {
+    color: var(--accent-gold);
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.countdown p {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+#countdown-timer {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--accent-gold);
+}
+
+.motivation {
+    width: 158px;
+    height: 75px;
     background-color: var(--dark-gray);
     border: 1px solid var(--accent-red);
     border-radius: 5px;
@@ -700,10 +692,6 @@ body {
 
 .pomodoro {
     background-color: #001f3d;
-    max-width: 275px;
-    width: 100%;
-    max-height: 215px;
-    height: 100%;
     padding: 15px;
     border-radius: 5px;
     border: 1px solid var(--accent-blue);
@@ -713,11 +701,11 @@ body {
 .pomodoro h4 {
     color: var(--accent-gold);
     margin-bottom: 15px;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 #pomodoro-timer {
-    font-size: 25px;
+    font-size: 36px;
     font-weight: bold;
     margin-bottom: 15px;
     color: var(--text-primary);
@@ -759,65 +747,6 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
-}
-
-.mission-control {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-}
-
-.mission-button {
-    position: relative;
-    background: linear-gradient(to bottom, var(--accent-red), #990000);
-    color: white;
-    border: none;
-    border-radius: 50px;
-    padding: 15px 40px;
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    cursor: pointer;
-    overflow: hidden;
-    transition: all 0.3s;
-    box-shadow: 0 5px 15px rgba(204, 0, 0, 0.6);
-    z-index: 1;
-}
-
-.mission-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(204, 0, 0, 0.8);
-}
-
-.mission-button:active {
-    transform: translateY(1px);
-}
-
-.mission-button .pulse {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    background: var(--accent-red);
-    border-radius: 50px;
-    z-index: -1;
-    opacity: 0;
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% {
-        transform: translate(-50%, -50%) scale(0.9);
-        opacity: 0.6;
-    }
-    100% {
-        transform: translate(-50%, -50%) scale(1.3);
-        opacity: 0;
-    }
 }
 
 .calendar-section, .weekly-missions, .performance {
@@ -968,15 +897,20 @@ body {
     background-color: #00aa;
 }
 
+#weekly-tasks{
+  display: flex;
+  gap: 10px;
+  transition: transform 0.3s ease;
+  width: max-content;
+}
+
 .weekly-missions {
-  width: 100%;
-  max-width: 1420px;
-  height: 100%;
-  max-height: 400px;
+  max-width: 1200px;
+  height: 350px;
   margin: 0 auto;
-  padding: 25px; /* diminuí o padding-top de 20px para 10px */
+  padding: px 30px 20px 30px; /* diminuí o padding-top de 20px para 10px */
   background-color: #1a1a1a;
-  border-radius: 5px;
+  border-radius: 15px;
   overflow: hidden;
   box-sizing: border-box;
 }
@@ -988,6 +922,7 @@ body {
   font-size: 24px;
 }
 
+
 .carousel-container {
   position: relative;
   display: flex;
@@ -997,6 +932,7 @@ body {
 }
 
 .missions-container {
+  max-width: 800px;
   width: 100%;
   display: flex;
   gap: 20px;
@@ -1004,23 +940,21 @@ body {
  /* width: calc(100% - 100px); /* deixa espaço visível para os botões (2x 50px) */
   padding: 10px 0;
   transition: transform 0.3s ease;
-  overflow: hidden;
 }
 
 
 /* Ajuste o tamanho dos cards, se necessário */
 .day-card {
-  min-width: 200px;
-  height: 280px;
+  min-width: 175px;
+  height: 250px;
   background: rgb(1, 43, 85); /* cor do card */
   border-radius: 12px;
-  padding: 20px;
+  padding: 10px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   transition: transform 0.3s ease;
   flex-shrink: 0;
-  transform: translateY(-1px); /* sobe mais o card */
-  margin-right: 5px; /* define espaço entre cards */
-  overflow: hidden;
+  transform: translateY(-15px); /* sobe mais o card */
+  margin-right: 20px; /* define espaço entre cards */
 }
 
 .day-card:hover {
@@ -1030,7 +964,7 @@ body {
 .day-title {
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     color: #ffffff;
 }
 
@@ -1038,7 +972,7 @@ body {
     height: 8px;
     background: #e2e8f0;
     border-radius: 4px;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     overflow: hidden;
 }
 
@@ -1051,7 +985,7 @@ body {
 .activity-item {
     display: flex;
     align-items: center;
-    padding: 8px 0;
+    padding: 5px 0;
     border-bottom: 1px solid #eee;
 }
 
@@ -1060,11 +994,11 @@ body {
 }
 
 .checkbox {
-    width: 10px;
-    height: 10px;
+    width: 20px;
+    height: 20px;
     border: 2px solid #cbd5e1;
-    border-radius: 1px;
-    margin-right: 1px;
+    border-radius: 4px;
+    margin-right: 12px;
     cursor: pointer;
     transition: all 0.2s ease;
 }
@@ -1205,10 +1139,9 @@ body {
 }
 
 .report-icon {
-    font-size: 100%;
+    font-size: 20px;
     color: var(--accent-gold);
     margin-top: 3px;
-    overflow: hidden;
 }
 
 .report-content h4 {
@@ -1279,35 +1212,27 @@ body {
 }
 
 /* Responsividade */
-/* Responsividade para telas médias (até 1200px) */
 @media (max-width: 1200px) {
     .container {
-        display: grid; /* Certifique-se de que a container é um grid */
-        grid-template-columns: 200px 1fr; /* Sidebar esquerda fixa e conteúdo em 1fr */
+        grid-template-columns: 200px 1fr;
         grid-template-areas:
-            "header header"          /* Cabeçalho ocupa toda a largura */
-            "sidebar-left main"      /* Sidebar esquerda e conteúdo dividem a linha */
-            "sidebar-right sidebar-right" /* Sidebar direita ocupa uma linha separada */
-            "footer footer";         /* Rodapé ocupa toda a largura */
-        gap: 10px; /* Espaçamento entre os elementos do grid */
+            "header header"
+            "sidebar-left main"
+            "sidebar-right sidebar-right"
+            "footer footer";
     }
 }
 
-/* Responsividade para telas pequenas (até 768px) */
 @media (max-width: 768px) {
     .container {
-        display: grid; /* Garantir que a container seja um grid */
-        grid-template-columns: 1fr; /* Apenas uma coluna em telas pequenas */
+        grid-template-columns: 1fr;
         grid-template-areas:
-            "header"                /* Cabeçalho ocupa toda a largura */
-            "sidebar-left"          /* Sidebar esquerda em cima */
-            "main"                  /* Conteúdo */
-            "sidebar-right"         /* Sidebar direita embaixo */
-            "footer";               /* Rodapé ocupa toda a largura */
-        gap: 10px; /* Adiciona espaçamento entre as áreas */
+            "header"
+            "sidebar-left"
+            "main"
+            "sidebar-right"
+            "footer";
     }
-}
-
     
     .header-title {
         flex-direction: column;
@@ -1334,6 +1259,7 @@ body {
     .calendar-day {
         min-height: 60px;
     }
+}
 
 @media (max-width: 480px) {
     .calendar-day {
