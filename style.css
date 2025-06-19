@@ -54,7 +54,7 @@ body {
 .header-title {
     display: flex;
     align-items: center;
-    padding: 15px 20px;
+    padding: 15px 550px;
     background: linear-gradient(to right, #001a33, #003366);
     border-bottom: 2px solid var(--accent-gold);
 }
@@ -101,7 +101,7 @@ body {
 }
 
 .carousel-slide img {
-    max-width: 75%;
+    max-width: 89%;
     max-height: 200px;
     object-fit: contain; /* Mantém a proporção da imagem e centraliza */
 }
