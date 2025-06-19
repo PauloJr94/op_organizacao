@@ -6,6 +6,14 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* 🔧 Ajustes globais */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
 :root {
     --dark-base: #0a0a0a;
     --dark-gray: #1a1a1a;
@@ -28,15 +36,22 @@ body {
 
 .container {
     display: grid;
-    grid-template-columns: 230px 1fr 200px;
+    grid-template-columns: 250px 1fr 250px;
     grid-template-rows: auto 1fr auto;
     grid-template-areas:
         "header header header"
         "sidebar-left main sidebar-right"
         "footer footer footer";
     min-height: 100vh;
-    gap: 20px;
-    padding: 20px;
+    gap: 10px;         /* controle interno */
+    padding: 0 0 20px 0;  /* remove laterais, mantém rodapé espaçado */
+}
+
+
+.sidebar-left,
+.sidebar-right {
+    padding: 0;
+    margin: 0;
 }
 
 /* Cabeçalho */
@@ -52,12 +67,18 @@ body {
 }
 
 .header-title {
+    width: 100%; /* ocupa toda a largura disponível */
+    max-width: 100%; /* evita estouro */
     display: flex;
     align-items: center;
-    padding: 15px 550px;
+    justify-content: center; /* centraliza o conteúdo */
+    padding: 15px 10px; /* margem lateral proporcional e segura */
     background: linear-gradient(to right, #001a33, #003366);
     border-bottom: 2px solid var(--accent-gold);
+    box-sizing: border-box;
+    flex-wrap: wrap; /* permite quebra para telas menores */
 }
+
 
 .header-title i {
     font-size: 24px;
@@ -101,6 +122,7 @@ body {
 }
 
 .carousel-slide img {
+    position: center;
     max-width: 89%;
     max-height: 200px;
     object-fit: contain; /* Mantém a proporção da imagem e centraliza */
@@ -114,6 +136,7 @@ body {
 
 /* Sidebar Esquerda */
 .sidebar-left {
+    max-height: 100vw;
     grid-area: sidebar-left;
     display: flex;
     flex-direction: column;
@@ -121,8 +144,7 @@ body {
     background-color: var(--dark-gray);
     border: 1px solid var(--medium-gray);
     border-radius: 5px;
-    padding: 20px;
-    align-items: center; /* <<< Esta linha centraliza todos os filhos */
+    padding: 10px;
 }
 
 
@@ -265,11 +287,10 @@ body {
 }
 
 .missions-widget {
-    margin-left: 150px;
-    width: 158px;
+    width: 207px;
     background: linear-gradient(to bottom, #1e3a8a, #1e40af);
-    border-radius: 16px;
-    padding: 12px;
+    padding: 15px;
+    border-radius: 5px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     transition: height 0.3s ease;
 }
@@ -676,7 +697,7 @@ body {
 }
 
 .motivation {
-    width: 158px;
+    width: 207px;
     height: 75px;
     background-color: var(--dark-gray);
     border: 1px solid var(--accent-red);
@@ -743,10 +764,13 @@ body {
 
 /* Conteúdo Principal */
 .main-content {
+    max-width: 100%; /* remova ou aumente esse limite se a tela for maior */
+    margin: 0; /* elimina espaçamento artificial horizontal */
     grid-area: main;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
+    padding: 10px;
 }
 
 .calendar-section, .weekly-missions, .performance {
@@ -754,6 +778,9 @@ body {
     border: 1px solid var(--medium-gray);
     border-radius: 5px;
     padding: 25px;
+    width: 100%;
+    max-width: 1200px; /* limite central para não quebrar o layout */
+    margin: 0 auto;
 }
 
 .calendar-section h2, .weekly-missions h2, .performance h2 {
@@ -898,6 +925,7 @@ body {
 }
 
 #weekly-tasks{
+  left: -50PX;
   display: flex;
   gap: 10px;
   transition: transform 0.3s ease;
@@ -905,11 +933,12 @@ body {
 }
 
 .weekly-missions {
-  width: 100%;
+  width: 100% ;
   height: 350px;
-  padding: px 30px 20px 30px; /* diminuí o padding-top de 20px para 10px */
+  margin: 0 auto;
+  padding: 10px 30px 20px 30px; /* diminuí o padding-top de 20px para 10px */
   background-color: #1a1a1a;
-  border-radius: 15px;
+  border-radius: 5px;
   overflow: hidden;
   box-sizing: border-box;
 }
@@ -931,13 +960,14 @@ body {
 }
 
 .missions-container {
-  max-width: 1400px;
+  max-width: 1200px;
   width: 100%;
   display: flex;
   gap: 20px;
   scroll-behavior: smooth;
  /* width: calc(100% - 100px); /* deixa espaço visível para os botões (2x 50px) */
   padding: 15px 0;
+  margin-left: 5px;
   transition: transform 0.3s ease;
 }
 
@@ -1106,12 +1136,16 @@ body {
     grid-area: sidebar-right;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
     background-color: var(--dark-gray);
     border: 1px solid var(--medium-gray);
     border-radius: 5px;
-    padding: 20px;
+    padding: 10px;
+    /*margin: 0 auto; /* Centraliza a sidebar direita */
+    max-height: 100vh;           /* Faz a sidebar ocupar a altura total da tela */
+    overflow-y: auto;        /* Habilita scroll vertical quando o conteúdo passar do limite */
 }
+
 
 .sidebar-right h2 {
     color: var(--accent-gold);
@@ -1190,17 +1224,21 @@ body {
     object-fit: cover;
 }
 
-/* Rodapé */
 .footer {
     grid-area: footer;
     text-align: center;
-    padding: 15px;
+    padding: 15px 10px; /* padding lateral mais contido */
     background-color: var(--dark-gray);
     border: 1px solid var(--medium-gray);
     border-radius: 5px;
     color: var(--accent-gold);
     font-weight: bold;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
+
 
 .footer-icons {
     display: flex;

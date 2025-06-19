@@ -17,6 +17,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    function updateTime() {
+        updateClock();
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+    
     class MissionsManager {
         constructor() {
             this.missions = [];
