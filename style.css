@@ -11,7 +11,7 @@ html, body {
     margin: 0;
     padding: 0;
     width: 100%;
-    overflow: auto; /* Permite rolagem horizontal se necessário */
+    overflow-x: hidden;
 }
 
 :root {
@@ -44,7 +44,7 @@ body {
         "footer footer footer";
     min-height: 100vh;
     gap: 10px;         /* controle interno */
-    padding: 0 0 20px 0;  /* remove laterais, mantém rodapé espaçado */
+    padding: 20px 20px 20px 20px;  /* remove laterais, mantém rodapé espaçado */
 }
 
 
@@ -774,13 +774,12 @@ body {
 }
 
 .calendar-section, .weekly-missions, .performance {
+    width: 100%;
+    margin: 0;
+    padding: 25px;
     background-color: var(--dark-gray);
     border: 1px solid var(--medium-gray);
     border-radius: 5px;
-    padding: 25px;
-    width: 100%;
-    max-width: 1200px; /* limite central para não quebrar o layout */
-    margin: 0 auto;
 }
 
 .calendar-section h2, .weekly-missions h2, .performance h2 {
@@ -925,7 +924,7 @@ body {
 }
 
 #weekly-tasks{
-  left: -50PX;
+  right: 50px;
   display: flex;
   gap: 10px;
   transition: transform 0.3s ease;
