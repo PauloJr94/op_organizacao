@@ -1,3 +1,39 @@
+// 1. IMPORTAÇÕES DO FIREBASE
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+// 2. CONFIGURAÇÃO
+const firebaseConfig = {
+  apiKey: "AIzaSyBWSoHAtgDJGuweTfHsCiQDMUcaR3WaPZs",
+  authDomain: "operacao-codigo21.firebaseapp.com",
+  projectId: "operacao-codigo21",
+  storageBucket: "operacao-codigo21.firebasestorage.app",
+  messagingSenderId: "778213919692",
+  appId: "1:778213919692:web:b2eb6a14d4846f5b14ab69"
+};
+
+// 3. INICIALIZAR
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// 4. VERIFICAR LOGIN
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    window.location.href = "index.html"; // Redireciona se não logado
+  } else {
+    const ref = doc(db, "usuarios", user.uid);
+    const snap = await getDoc(ref);
+    if (snap.exists()) {
+      console.log("✅ Dados do usuário:", snap.data());
+      // Pode popular UI aqui ou disparar função que depende dos dados
+    } else {
+      console.log("⚠️ Usuário sem dados no banco.");
+    }
+  }
+});
+
 document.addEventListener('DOMContentLoaded', function () {
     // 🕒 Relógio
     function updateClock() {

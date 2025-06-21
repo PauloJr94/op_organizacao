@@ -5,7 +5,7 @@
 }
 
 body {
-  background: linear-gradient(150deg, #001f3d, #d4af37);
+  background: black url('bope.png') no-repeat center center fixed;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   height: 100vh;
   display: flex;
