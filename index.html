@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel de Missões - Concursando Tático</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -12,14 +12,246 @@
         <!-- Cabeçalho -->
         <header class="header">
             <div class="header-title">
-                <i class="fas fa-skull"></i>
+                 <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                 </button>
+                <div class="skull-icon">💀</div>
                <h1>OPERAÇÃO PLANO DE ESTUDOS <span> - Em Busca da Aprovação</span></h1>
-            </div>
+                <!-- Header -->
+    <!--<header class="header">
+        <div class="header-container">-->
+             <!--Hamburger Menu Button--> 
+
+
+            <!-- Header Title 
+            <div class="header-title">
+                
+                <h1>OPERAÇÃO PLANO DE ESTUDOS</h1>
+                <span class="subtitle">Em Busca da Aprovação</span>
+            </div>-->
+        </div>
             <div class="carousel">
                 <div class="carousel-track">
                     <div class="carousel-slide"><img src="logo.png" alt="logos"></div>
                 </div>
             </div>
+    </header>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header">
+            <h2>Menu Principal</h2>
+            <button id="close-btn" class="close-btn" aria-label="Close menu">
+                <span class="close-icon">×</span>
+            </button>
+        </div>
+
+        <!-- Menu Items -->
+        <nav class="sidebar-nav">
+            <ul class="menu-list">
+                <li>
+                    <button class="menu-item" data-tab="rotinas">
+                        <div class="menu-icon-group">
+                            <span class="menu-emoji">📅</span>
+                            <span class="menu-text">Rotinas</span>
+                        </div>
+                        <span class="item-count" id="count-rotinas">0</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="menu-item" data-tab="estudos">
+                        <div class="menu-icon-group">
+                            <span class="menu-emoji">📘</span>
+                            <span class="menu-text">Estudos</span>
+                        </div>
+                        <span class="item-count" id="count-estudos">0</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="menu-item" data-tab="simulados">
+                        <div class="menu-icon-group">
+                            <span class="menu-emoji">🧠</span>
+                            <span class="menu-text">Simulados</span>
+                        </div>
+                        <span class="item-count" id="count-simulados">0</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="menu-item" data-tab="treinos">
+                        <div class="menu-icon-group">
+                            <span class="menu-emoji">💪</span>
+                            <span class="menu-text">Treinos</span>
+                        </div>
+                        <span class="item-count" id="count-treinos">0</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="menu-item" data-tab="materiais">
+                        <div class="menu-icon-group">
+                            <span class="menu-emoji">🗂️</span>
+                            <span class="menu-text">Materiais</span>
+                        </div>
+                        <span class="item-count" id="count-materiais">0</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="menu-item" data-tab="progresso">
+                        <div class="menu-icon-group">
+                            <span class="menu-emoji">📊</span>
+                            <span class="menu-text">Progresso</span>
+                        </div>
+                        <span class="item-count" id="count-progresso">0</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="menu-item" data-tab="configuracoes">
+                        <div class="menu-icon-group">
+                            <span class="menu-emoji">⚙️</span>
+                            <span class="menu-text">Configurações</span>
+                        </div>
+                        <span class="item-count" id="count-configuracoes">0</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
+            <p class="version">Versão 1.0</p>
+            <div class="status">
+                <div class="status-dot"></div>
+                <span>Sistema Online</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Welcome Screen -->
+        <div id="welcome-screen" class="welcome-content">
+            <div class="welcome-card">
+            </div>
+        </div>
+
+        <!-- Tab Contents -->
+        <div id="tab-rotinas" class="tab-content" style="display: none;">
+            <div class="tab-header">
+                <div class="tab-title">
+                    <span class="tab-emoji">📅</span>
+                    <h2>Rotinas</h2>
+                </div>
+                <button class="close-tab-btn" data-tab="rotinas">×</button>
+            </div>
+            <div class="add-section">
+                <input type="text" id="input-rotinas" placeholder="Adicionar nova rotina..." class="add-input">
+                <button class="add-btn" data-tab="rotinas">Adicionar</button>
+            </div>
+            <div class="items-list" id="list-rotinas"></div>
+            <div class="stats-section" id="stats-rotinas" style="display: none;"></div>
+        </div>
+
+        <div id="tab-estudos" class="tab-content" style="display: none;">
+            <div class="tab-header">
+                <div class="tab-title">
+                    <span class="tab-emoji">📘</span>
+                    <h2>Estudos</h2>
+                </div>
+                <button class="close-tab-btn" data-tab="estudos">×</button>
+            </div>
+            <div class="add-section">
+                <input type="text" id="input-estudos" placeholder="Adicionar novo estudo..." class="add-input">
+                <button class="add-btn" data-tab="estudos">Adicionar</button>
+            </div>
+            <div class="items-list" id="list-estudos"></div>
+            <div class="stats-section" id="stats-estudos" style="display: none;"></div>
+        </div>
+
+        <div id="tab-simulados" class="tab-content" style="display: none;">
+            <div class="tab-header">
+                <div class="tab-title">
+                    <span class="tab-emoji">🧠</span>
+                    <h2>Simulados</h2>
+                </div>
+                <button class="close-tab-btn" data-tab="simulados">×</button>
+            </div>
+            <div class="add-section">
+                <input type="text" id="input-simulados" placeholder="Adicionar novo simulado..." class="add-input">
+                <button class="add-btn" data-tab="simulados">Adicionar</button>
+            </div>
+            <div class="items-list" id="list-simulados"></div>
+            <div class="stats-section" id="stats-simulados" style="display: none;"></div>
+        </div>
+
+        <div id="tab-treinos" class="tab-content" style="display: none;">
+            <div class="tab-header">
+                <div class="tab-title">
+                    <span class="tab-emoji">💪</span>
+                    <h2>Treinos</h2>
+                </div>
+                <button class="close-tab-btn" data-tab="treinos">×</button>
+            </div>
+            <div class="add-section">
+                <input type="text" id="input-treinos" placeholder="Adicionar novo treino..." class="add-input">
+                <button class="add-btn" data-tab="treinos">Adicionar</button>
+            </div>
+            <div class="items-list" id="list-treinos"></div>
+            <div class="stats-section" id="stats-treinos" style="display: none;"></div>
+        </div>
+
+        <div id="tab-materiais" class="tab-content" style="display: none;">
+            <div class="tab-header">
+                <div class="tab-title">
+                    <span class="tab-emoji">🗂️</span>
+                    <h2>Materiais</h2>
+                </div>
+                <button class="close-tab-btn" data-tab="materiais">×</button>
+            </div>
+            <div class="add-section">
+                <input type="text" id="input-materiais" placeholder="Adicionar novo material..." class="add-input">
+                <button class="add-btn" data-tab="materiais">Adicionar</button>
+            </div>
+            <div class="items-list" id="list-materiais"></div>
+            <div class="stats-section" id="stats-materiais" style="display: none;"></div>
+        </div>
+
+        <div id="tab-progresso" class="tab-content" style="display: none;">
+            <div class="tab-header">
+                <div class="tab-title">
+                    <span class="tab-emoji">📊</span>
+                    <h2>Progresso</h2>
+                </div>
+                <button class="close-tab-btn" data-tab="progresso">×</button>
+            </div>
+            <div class="add-section">
+                <input type="text" id="input-progresso" placeholder="Adicionar meta de progresso..." class="add-input">
+                <button class="add-btn" data-tab="progresso">Adicionar</button>
+            </div>
+            <div class="items-list" id="list-progresso"></div>
+            <div class="stats-section" id="stats-progresso" style="display: none;"></div>
+        </div>
+
+        <div id="tab-configuracoes" class="tab-content" style="display: none;">
+            <div class="tab-header">
+                <div class="tab-title">
+                    <span class="tab-emoji">⚙️</span>
+                    <h2>Configurações</h2>
+                </div>
+                <button class="close-tab-btn" data-tab="configuracoes">×</button>
+            </div>
+            <div class="add-section">
+                <input type="text" id="input-configuracoes" placeholder="Adicionar configuração..." class="add-input">
+                <button class="add-btn" data-tab="configuracoes">Adicionar</button>
+            </div>
+            <div class="items-list" id="list-configuracoes"></div>
+            <div class="stats-section" id="stats-configuracoes" style="display: none;"></div>
+        </div>
+    </main>        
         </header>
 
         <!-- Sidebar Esquerda -->
@@ -53,21 +285,18 @@
         <div class="missions-widget" id="missions-widget">
         <!-- conteúdo: botão, inputs, etc. -->
             <!-- Header -->
-            <div class="header">
                 <div class="header-left">
                     <svg class="target-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="10"/>
                         <circle cx="12" cy="12" r="6"/>
                         <circle cx="12" cy="12" r="2"/>
                     </svg>
-                    <!--<span class="header-title">Próximas</span>-->
                 </div>
-                <!--<div class="counter">
-                    <span id="missions-counter">0</span> ativ
-                </div>-->
-            </div>
-
-            <div class="missions-title">Proximas Missões</div>
+                <div class="missions-title">Proximas Missões</div>
+                <div class="counter" style="font-size: 14px;">
+                    <span id="missions-counter">0</span> ativo
+                </div>
+                
 
             <!-- Add Mission Button -->
             <button class="add-btn" id="add-btn">
