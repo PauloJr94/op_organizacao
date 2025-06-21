@@ -6,7 +6,7 @@ document.getElementById('login-form').addEventListener('submit', function (e) {
 
   // Substitua com sua lógica real de autenticação
   if (username === 'admin' && password === '1234') {
-    window.location.href = 'index.html';
+    window.location.href = 'home.html';
   } else {
     document.getElementById('error-message').textContent = 'Usuário ou senha inválidos.';
   }
