@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progresso - Gerenciador Moderno</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/page.css">
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <a href="index.html" class="back-btn">
+                <span>←</span>
+                <span>Voltar</span>
+            </a>
+            <div class="page-title">
+                <div class="page-icon">📊</div>
+                <h1>Progresso</h1>
+            </div>
+        </header>
+
+        <main class="page-content">
+            <div class="progress-overview">
+                <div class="progress-cards" id="progress-cards"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            updateProgressOverview();
+        });
+
+        function updateProgressOverview() {
+            const container = document.getElementById('progress-cards');
+            const categories = [
+                { key: 'rotinas', name: 'Rotinas', icon: '📅' },
+                { key: 'estudos', name: 'Estudos', icon: '📚' },
+                { key: 'simulados', name: 'Simulados', icon: '📝' },
+                { key: 'treinos', name: 'Treinos', icon: '💪' },
+                { key: 'materiais', name: 'Materiais', icon: '📋' }
+            ];
+
+            const cards = categories.map(category => {
+                const items = JSON.parse(localStorage.getItem(category.key) || '[]');
+                const total = items.length;
+                const completed = items.filter(item => item.completed).length;
+                const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+                return `
+                    <div class="progress-card">
+                        <div class="progress-card-header">
+                            <div class="progress-card-icon">${category.icon}</div>
+                            <div class="progress-card-title">${category.name}</div>
+                        </div>
+                        <div class="progress-card-stats">
+                            <div>
+                                <div class="progress-card-number">${completed}</div>
+                                <div class="progress-card-label">Concluídas</div>
+                            </div>
+                            <div>
+                                <div class="progress-card-number">${total}</div>
+                                <div class="progress-card-label">Total</div>
+                            </div>
+                            <div>
+                                <div class="progress-card-number">${percentage}%</div>
+                                <div class="progress-card-label">Progresso</div>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${percentage}%"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            container.innerHTML = cards;
+        }
+    </script>
+</body>
+</html>

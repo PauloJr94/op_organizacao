@@ -320,10 +320,10 @@ body {
     gap: 0.5rem;
 }
 
-.menu-item {
+a.menu-item {
     width: 100%;
     background: #001f3d;
-    border: 1px solid transparent, rgb(41, 164, 247);
+    border: 1px solid transparent; /* ✅ apenas uma cor */
     border-radius: 12px;
     padding: 1rem;
     cursor: pointer;
@@ -333,16 +333,17 @@ body {
     justify-content: space-between;
     text-align: left;
     color: white;
+    text-decoration: none; /* ✅ remove sublinhado */
 }
 
-.menu-item:hover {
+a.menu-item:hover {
     background: #111827;
     border-color: #111827;
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(139, 92, 246, 0.1);
 }
 
-.menu-item.active {
+a.menu-item.active {
     background: rgba(139, 92, 246, 0.3);
     border-color: rgba(139, 92, 246, 0.5);
 }

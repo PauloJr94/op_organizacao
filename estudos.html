@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudos - Gerenciador Moderno</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/page.css">
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <a href="home.html" class="back-btn">
+                <span>←</span>
+                <span>Voltar</span>
+            </a>
+            <div class="page-title">
+                <div class="page-icon">📚</div>
+                <h1>Estudos</h1>
+            </div>
+        </header>
+
+        <main class="page-content">
+            <div class="add-section">
+                <input type="text" id="item-input" placeholder="Adicionar novo estudo..." class="add-input">
+                <button class="add-btn" onclick="addItem()">Adicionar</button>
+            </div>
+
+            <div class="stats-toggle">
+                <button class="stats-btn" onclick="toggleStats()">📊 Mostrar Estatísticas</button>
+            </div>
+
+            <div class="stats-section" id="stats-section"></div>
+
+            <div class="items-list" id="items-list"></div>
+        </main>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/page-manager.js"></script>
+    <script>
+        const pageManager = new PageManager('estudos');
+    </script>
+</body>
+</html>

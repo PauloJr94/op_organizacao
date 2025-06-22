@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações - Gerenciador Moderno</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/page.css">
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <a href="index.html" class="back-btn">
+                <span>←</span>
+                <span>Voltar</span>
+            </a>
+            <div class="page-title">
+                <div class="page-icon">⚙️</div>
+                <h1>Configurações</h1>
+            </div>
+        </header>
+
+        <main class="page-content">
+            <div class="config-section">
+                <div class="config-group">
+                    <h3>Dados</h3>
+                    <button class="config-btn" onclick="exportData()">📤 Exportar Dados</button>
+                    <button class="config-btn" onclick="importData()">📥 Importar Dados</button>
+                    <button class="config-btn danger" onclick="clearAllData()">🗑️ Limpar Todos os Dados</button>
+                </div>
+                <div class="config-group">
+                    <h3>Informações</h3>
+                    <div class="info-item">
+                        <span>Versão:</span>
+                        <span>1.0.0</span>
+                    </div>
+                    <div class="info-item">
+                        <span>Última atualização:</span>
+                        <span id="last-update">-</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            updateLastUpdate();
+        });
+
+        function updateLastUpdate() {
+            const categories = ['rotinas', 'estudos', 'simulados', 'treinos', 'materiais'];
+            let lastUpdate = 0;
+
+            categories.forEach(category => {
+                const data = JSON.parse(localStorage.getItem(category) || '[]');
+                data.forEach(item => {
+                    if (item.createdAt > lastUpdate) {
+                        lastUpdate = item.createdAt;
+                    }
+                });
+            });
+
+            const lastUpdateElement = document.getElementById('last-update');
+            if (lastUpdate > 0) {
+                lastUpdateElement.textContent = new Date(lastUpdate).toLocaleString('pt-BR');
+            } else {
+                lastUpdateElement.textContent = 'Nenhuma atividade';
+            }
+        }
+
+        function exportData() {
+            const categories = ['rotinas', 'estudos', 'simulados', 'treinos', 'materiais'];
+            const data = {};
+
+            categories.forEach(category => {
+                data[category] = JSON.parse(localStorage.getItem(category) || '[]');
+            });
+
+            const dataStr = JSON.stringify(data, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `gerenciador-dados-${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+
+        function importData() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+
+            input.onchange = (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const importedData = JSON.parse(e.target.result);
+                        const categories = ['rotinas', 'estudos', 'simulados', 'treinos', 'materiais'];
+                        
+                        const isValid = categories.every(category => 
+                            importedData[category] && Array.isArray(importedData[category])
+                        );
+
+                        if (!isValid) {
+                            alert('Arquivo inválido. Verifique se o formato está correto.');
+                            return;
+                        }
+
+                        if (confirm('Isso substituirá todos os dados atuais. Deseja continuar?')) {
+                            categories.forEach(category => {
+                                localStorage.setItem(category, JSON.stringify(importedData[category]));
+                            });
+                            alert('Dados importados com sucesso!');
+                            updateLastUpdate();
+                        }
+                    } catch (error) {
+                        alert('Erro ao ler o arquivo. Verifique se é um arquivo JSON válido.');
+                    }
+                };
+                reader.readAsText(file);
+            };
+
+            input.click();
+        }
+
+        function clearAllData() {
+            if (confirm('Isso apagará TODOS os dados permanentemente. Deseja continuar?')) {
+                if (confirm('Tem certeza? Esta ação não pode ser desfeita.')) {
+                    const categories = ['rotinas', 'estudos', 'simulados', 'treinos', 'materiais'];
+                    categories.forEach(category => {
+                        localStorage.removeItem(category);
+                    });
+                    alert('Todos os dados foram apagados.');
+                    updateLastUpdate();
+                }
+            }
+        }
+    </script>
+</body>
+</html>
