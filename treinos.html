@@ -3,43 +3,344 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Treinos - Gerenciador Moderno</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/page.css">
+    <title>FitTracker Pro - Dashboard</title>
+    <link rel="stylesheet" href="treino.css">
 </head>
 <body>
-    <div class="container">
-        <header class="page-header">
-            <a href="home.html" class="back-btn">
-                <span>←</span>
-                <span>Voltar</span>
-            </a>
-            <div class="page-title">
-                <div class="page-icon">💪</div>
-                <h1>Treinos</h1>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">💪</div>
+                    <h1>FitTracker Pro</h1>
+                </div>
+                
+                <!-- Home Button -->
+                <button class="home-btn" onclick="window.location.href='home.html'" title="Voltar ao Home">
+                    🏠 Home
+                </button>
+                
+                <!-- Desktop Navigation -->
+                <nav class="desktop-nav">
+                    <button class="nav-btn active" data-tab="dashboard">📊 Dashboard</button>
+                    <button class="nav-btn" data-tab="workouts">💪 Treinos</button>
+                    <button class="nav-btn" data-tab="progress">📈 Progresso</button>
+                    <button class="nav-btn" data-tab="goals">🎯 Metas</button>
+                    <button class="nav-btn" data-tab="assessments">📏 Avaliações</button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn">☰</button>
             </div>
+
+            <!-- Mobile Navigation -->
+            <nav class="mobile-nav">
+                <button class="nav-btn active" data-tab="dashboard">📊 Dashboard</button>
+                <button class="nav-btn" data-tab="workouts">💪 Treinos</button>
+                <button class="nav-btn" data-tab="progress">📈 Progresso</button>
+                <button class="nav-btn" data-tab="goals">🎯 Metas</button>
+                <button class="nav-btn" data-tab="assessments">📏 Avaliações</button>
+            </nav>
         </header>
 
-        <main class="page-content">
-            <div class="add-section">
-                <input type="text" id="item-input" placeholder="Adicionar novo treino..." class="add-input">
-                <button class="add-btn" onclick="addItem()">Adicionar</button>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Tab -->
+            <div id="dashboard" class="tab-content active">
+                <div class="stats-grid">
+                    <div class="stat-card primary">
+                        <div class="stat-icon">💪</div>
+                        <div class="stat-info">
+                            <h3>Treinos Concluídos</h3>
+                            <div class="stat-value" id="total-workouts">0</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card accent">
+                        <div class="stat-icon">⏱️</div>
+                        <div class="stat-info">
+                            <h3>Tempo Total</h3>
+                            <div class="stat-value" id="total-time">0h</div>
+                            <div class="stat-subtitle" id="avg-time">0min médio</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card success">
+                        <div class="stat-icon">🔥</div>
+                        <div class="stat-info">
+                            <h3>Sequência Atual</h3>
+                            <div class="stat-value" id="current-streak">0</div>
+                            <div class="stat-subtitle">dias consecutivos</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card warning">
+                        <div class="stat-icon">⚖️</div>
+                        <div class="stat-info">
+                            <h3>Peso Atual</h3>
+                            <div class="stat-value" id="current-weight">--</div>
+                            <div class="stat-subtitle">última medição</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weekly Calendar -->
+                <div class="calendar-section">
+                    <div class="section-header">
+                        <h2>📅 Calendário Semanal</h2>
+                    </div>
+                    <div class="calendar-grid" id="weekly-calendar">
+                        <!-- Calendar days will be generated by JS -->
+                    </div>
+                </div>
+
+                <!-- Progress Chart -->
+                <div class="progress-section">
+                    <div class="section-header">
+                        <h2>📈 Progresso Semanal</h2>
+                    </div>
+                    <div class="progress-chart" id="progress-chart">
+                        <!-- Chart will be generated by JS -->
+                    </div>
+                </div>
             </div>
 
-            <div class="stats-toggle">
-                <button class="stats-btn" onclick="toggleStats()">📊 Mostrar Estatísticas</button>
+            <!-- Workouts Tab -->
+            <div id="workouts" class="tab-content">
+                <div class="section-header">
+                    <h2>💪 Biblioteca de Treinos</h2>
+                    <button class="primary-btn" id="create-workout-btn">➕ Novo Treino</button>
+                </div>
+                
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="strength">💪 Força</button>
+                    <button class="filter-btn" data-filter="cardio">❤️ Cardio</button>
+                    <button class="filter-btn" data-filter="flexibility">🧘 Flexibilidade</button>
+                    <button class="filter-btn" data-filter="sports">⚽ Esportes</button>
+                </div>
+
+                <div class="workouts-grid" id="workouts-grid">
+                    <!-- Workouts will be generated by JS -->
+                </div>
             </div>
 
-            <div class="stats-section" id="stats-section"></div>
+            <!-- Progress Tab -->
+            <div id="progress" class="tab-content">
+                <div class="section-header">
+                    <h2>📈 Análise de Progresso</h2>
+                </div>
+                <div class="progress-details" id="progress-details">
+                    <!-- Progress details will be generated by JS -->
+                </div>
+            </div>
 
-            <div class="items-list" id="items-list"></div>
+            <!-- Goals Tab -->
+            <div id="goals" class="tab-content">
+                <div class="section-header">
+                    <h2>🎯 Metas Diárias</h2>
+                    <button class="primary-btn" id="add-goal-btn">➕ Nova Meta</button>
+                </div>
+                <div class="goals-container" id="goals-container">
+                    <!-- Goals will be generated by JS -->
+                </div>
+            </div>
+
+            <!-- Assessments Tab -->
+            <div id="assessments" class="tab-content">
+                <div class="section-header">
+                    <h2>📏 Avaliações Corporais</h2>
+                    <button class="primary-btn" id="add-assessment-btn">➕ Nova Avaliação</button>
+                </div>
+                <div class="assessments-container" id="assessments-container">
+                    <!-- Assessments will be generated by JS -->
+                </div>
+            </div>
         </main>
+
+        <!-- Modals -->
+        <div id="workout-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="workout-modal-title">Novo Treino</h3>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <form id="workout-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nome do Treino</label>
+                            <input type="text" id="workout-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Duração (min)</label>
+                            <input type="number" id="workout-duration" min="10" max="180" value="30">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Descrição</label>
+                        <textarea id="workout-description" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Dificuldade</label>
+                            <select id="workout-difficulty">
+                                <option value="easy">Fácil</option>
+                                <option value="medium" selected>Médio</option>
+                                <option value="hard">Difícil</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Categoria</label>
+                            <select id="workout-category">
+                                <option value="strength">Força</option>
+                                <option value="cardio">Cardio</option>
+                                <option value="flexibility">Flexibilidade</option>
+                                <option value="sports">Esportes</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="exercises-section">
+                        <div class="section-header">
+                            <h4>Exercícios</h4>
+                            <button type="button" id="add-exercise-btn">➕ Adicionar</button>
+                        </div>
+                        <div id="exercises-container">
+                            <!-- Exercises will be added dynamically -->
+                        </div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" class="secondary-btn close-btn">Cancelar</button>
+                        <button type="submit" class="primary-btn">Salvar Treino</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Day Schedule Modal -->
+        <div id="day-schedule-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="day-schedule-title">Treinos do Dia</h3>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <div class="day-schedule-content">
+                    <div class="scheduled-workouts" id="scheduled-workouts">
+                        <!-- Scheduled workouts will be shown here -->
+                    </div>
+                    <div class="add-workout-section">
+                        <h4>Adicionar Treino</h4>
+                        <select id="workout-select">
+                            <option value="">Selecione um treino...</option>
+                        </select>
+                        <button id="add-workout-to-day" class="primary-btn">Adicionar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Assessment Modal -->
+        <div id="assessment-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Nova Avaliação</h3>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <form id="assessment-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Peso (kg) *</label>
+                            <input type="number" id="assessment-weight" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Gordura Corporal (%)</label>
+                            <input type="number" id="assessment-bodyfat" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label>Massa Muscular (kg)</label>
+                            <input type="number" id="assessment-muscle" step="0.1">
+                        </div>
+                    </div>
+                    
+                    <h4>Medidas Corporais (cm)</h4>
+                    <div class="measurements-grid">
+                        <div class="form-group">
+                            <label>Peito</label>
+                            <input type="number" id="measurement-chest" step="0.5">
+                        </div>
+                        <div class="form-group">
+                            <label>Cintura</label>
+                            <input type="number" id="measurement-waist" step="0.5">
+                        </div>
+                        <div class="form-group">
+                            <label>Quadril</label>
+                            <input type="number" id="measurement-hips" step="0.5">
+                        </div>
+                        <div class="form-group">
+                            <label>Braços</label>
+                            <input type="number" id="measurement-arms" step="0.5">
+                        </div>
+                        <div class="form-group">
+                            <label>Coxas</label>
+                            <input type="number" id="measurement-thighs" step="0.5">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Observações</label>
+                        <textarea id="assessment-notes" rows="4"></textarea>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" class="secondary-btn close-btn">Cancelar</button>
+                        <button type="submit" class="primary-btn">Salvar Avaliação</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Goal Modal -->
+        <div id="goal-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Nova Meta Diária</h3>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <form id="goal-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Tipo de Meta</label>
+                            <select id="goal-type">
+                                <option value="water">💧 Água</option>
+                                <option value="steps">👟 Passos</option>
+                                <option value="calories">🔥 Calorias</option>
+                                <option value="sleep">😴 Sono</option>
+                                <option value="workout">💪 Treinos</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Meta</label>
+                            <input type="number" id="goal-target" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Unidade</label>
+                            <input type="text" id="goal-unit" value="copos" readonly>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" class="secondary-btn close-btn">Cancelar</button>
+                        <button type="submit" class="primary-btn">Adicionar Meta</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
-    <script src="js/common.js"></script>
-    <script src="js/page-manager.js"></script>
-    <script>
-        const pageManager = new PageManager('treinos');
-    </script>
+    <script src="treino.js"></script>
 </body>
 </html>

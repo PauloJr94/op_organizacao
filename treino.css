@@ -1,0 +1,1259 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #0f142a 0%, #1a1f3a 50%, #0f142a 100%);
+    min-height: 100vh;
+}
+
+/* Home Page Styles */
+.home-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+}
+
+.home-header {
+    margin-bottom: 3rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.logo-icon {
+    font-size: 3rem;
+    background: linear-gradient(45deg, #d4af37, #f4d03f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.home-header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.tagline {
+    font-size: 1.2rem;
+    color: #d4af37;
+    margin-bottom: 2rem;
+}
+
+.hero-section h2 {
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.hero-section p {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 3rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+    max-width: 1000px;
+}
+
+.feature-card {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212,175,55,0.3);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,0.15);
+    border-color: #d4af37;
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+    color: white;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.feature-card p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+}
+
+.cta-button {
+    background: linear-gradient(45deg, #d4af37, #f4d03f);
+    color: #0f142a;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(212,175,55,0.3);
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212,175,55,0.4);
+}
+
+.home-footer {
+    margin-top: 3rem;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.9rem;
+}
+
+/* App Container */
+.app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Styles */
+.app-header {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo-section .logo-icon {
+    font-size: 2rem;
+}
+
+.logo-section h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+}
+
+.home-btn {
+    background: rgba(212,175,55,0.2);
+    color: #d4af37;
+    border: 1px solid #d4af37;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.home-btn:hover {
+    background: #d4af37;
+    color: #0f142a;
+}
+
+.desktop-nav {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.nav-btn {
+    background: transparent;
+    color: white;
+    border: none;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.nav-btn:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.nav-btn.active {
+    background: #d4af37;
+    color: #0f142a;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.mobile-nav {
+    display: none;
+    padding: 1rem 2rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.mobile-nav.active {
+    display: flex;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    width: 100%;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+.stat-card.primary {
+    background: linear-gradient(135deg, #0f142a, #1a1f3a);
+    color: white;
+}
+
+.stat-card.accent {
+    background: linear-gradient(135deg, #d4af37, #f4d03f);
+    color: #0f142a;
+}
+
+.stat-card.success {
+    background: linear-gradient(135deg, #10b981, #34d399);
+    color: white;
+}
+
+.stat-card.warning {
+    background: linear-gradient(135deg, #f59e0b, #fbbf24);
+    color: #0f142a;
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    opacity: 0.8;
+}
+
+.stat-info h3 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    opacity: 0.9;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.stat-subtitle {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    margin-top: 0.25rem;
+}
+
+/* Section Headers */
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.section-header h4 {
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Buttons */
+.primary-btn {
+    background: linear-gradient(45deg, #d4af37, #f4d03f);
+    color: #0f142a;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.primary-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(212,175,55,0.3);
+}
+
+.secondary-btn {
+    background: transparent;
+    color: #666;
+    border: 1px solid #ddd;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.secondary-btn:hover {
+    background: #f5f5f5;
+    border-color: #ccc;
+}
+
+/* Calendar Styles */
+.calendar-section {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1rem;
+}
+
+.calendar-day {
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.calendar-day:hover {
+    border-color: #d4af37;
+    transform: translateY(-2px);
+}
+
+.calendar-day.has-workouts {
+    border-color: #0f142a;
+    background: linear-gradient(135deg, #f8f9ff, #e8f0ff);
+}
+
+.calendar-day.completed {
+    border-color: #10b981;
+    background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+}
+
+.day-label {
+    font-weight: 600;
+    color: #666;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.day-workouts {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.workout-item {
+    background: rgba(15,20,42,0.1);
+    color: #0f142a;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.workout-item.completed {
+    background: rgba(16,185,129,0.2);
+    color: #065f46;
+}
+
+.remove-workout {
+    background: none;
+    border: none;
+    color: #dc2626;
+    cursor: pointer;
+    font-size: 0.8rem;
+    padding: 0;
+    margin-left: 0.25rem;
+}
+
+.remove-workout:hover {
+    color: #991b1b;
+}
+
+.add-workout-btn {
+    background: rgba(212,175,55,0.1);
+    color: #d4af37;
+    border: 1px dashed #d4af37;
+    padding: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.7rem;
+    transition: all 0.3s ease;
+}
+
+.add-workout-btn:hover {
+    background: rgba(212,175,55,0.2);
+}
+
+/* Filter Buttons */
+.filter-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.filter-btn:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.filter-btn.active {
+    background: #d4af37;
+    color: #0f142a;
+    border-color: #d4af37;
+}
+
+/* Workouts Grid */
+.workouts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.workout-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.workout-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+.workout-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.workout-info h3 {
+    color: #0f142a;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.workout-category {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.workout-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.action-btn:hover {
+    background: #f5f5f5;
+}
+
+.workout-description {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.workout-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.workout-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.difficulty-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.difficulty-easy {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.difficulty-medium {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.difficulty-hard {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.start-btn {
+    background: #0f142a;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.start-btn:hover {
+    background: #1a1f3a;
+}
+
+/* Progress Section */
+.progress-section {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.progress-chart {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    height: 200px;
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.chart-bar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 0.25rem;
+}
+
+.bar {
+    width: 100%;
+    max-width: 40px;
+    background: linear-gradient(to top, #0f142a, #d4af37);
+    border-radius: 4px 4px 0 0;
+    transition: all 0.3s ease;
+    margin-bottom: 0.5rem;
+}
+
+.bar:hover {
+    opacity: 0.8;
+}
+
+.bar-label {
+    font-size: 0.8rem;
+    color: #666;
+    text-align: center;
+}
+
+.progress-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.progress-stat {
+    text-align: center;
+    padding: 1rem;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 8px;
+}
+
+.progress-stat-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.progress-stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f142a;
+    margin-bottom: 0.25rem;
+}
+
+.progress-stat-label {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Goals Section */
+.goals-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.goal-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.goal-card.completed {
+    border-left: 4px solid #10b981;
+    background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+}
+
+.goal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.goal-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.goal-icon {
+    font-size: 1.5rem;
+}
+
+.goal-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #0f142a;
+}
+
+.goal-progress-text {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.goal-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.goal-btn {
+    background: #0f142a;
+    color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.goal-btn:hover {
+    background: #1a1f3a;
+}
+
+.goal-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.goal-progress {
+    margin-bottom: 0.5rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #0f142a, #d4af37);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.progress-fill.completed {
+    background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+.progress-percentage {
+    text-align: right;
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 0.25rem;
+}
+
+/* Assessments Section */
+.assessments-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.assessment-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.assessment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.assessment-date {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #0f142a;
+}
+
+.assessment-main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.assessment-metric {
+    text-align: center;
+}
+
+.metric-label {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 0.25rem;
+}
+
+.metric-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f142a;
+}
+
+.assessment-measurements {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 1rem;
+}
+
+.measurements-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.measurements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.measurement-item {
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+}
+
+.measurement-value {
+    font-weight: 500;
+    color: #333;
+}
+
+.assessment-notes {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 1rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-header h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #0f142a;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    background: #f5f5f5;
+    color: #333;
+}
+
+/* Form Styles */
+form {
+    padding: 1.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #d4af37;
+    box-shadow: 0 0 0 3px rgba(212,175,55,0.1);
+}
+
+.exercises-section {
+    margin: 1.5rem 0;
+}
+
+.exercise-item {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.exercise-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.exercise-number {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #666;
+}
+
+.remove-exercise {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.remove-exercise:hover {
+    background: #b91c1c;
+}
+
+.measurements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Day Schedule Modal */
+.day-schedule-content {
+    padding: 1.5rem;
+}
+
+.scheduled-workouts {
+    margin-bottom: 2rem;
+}
+
+.scheduled-workout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.scheduled-workout.completed {
+    background: #dcfce7;
+    border-left: 4px solid #10b981;
+}
+
+.workout-name {
+    font-weight: 500;
+    color: #0f142a;
+}
+
+.workout-status {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.workout-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.complete-btn {
+    background: #10b981;
+    color: white;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.complete-btn:hover {
+    background: #059669;
+}
+
+.add-workout-section {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 1rem;
+}
+
+.add-workout-section h4 {
+    margin-bottom: 1rem;
+    color: #0f142a;
+}
+
+.add-workout-section select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+/* Empty States */
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #666;
+}
+
+.empty-state-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.empty-state h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #374151;
+}
+
+.empty-state p {
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .desktop-nav {
+        display: none;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .main-content {
+        padding: 1rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .calendar-grid {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+    
+    .calendar-day {
+        min-height: 80px;
+        padding: 0.75rem;
+    }
+    
+    .workouts-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .measurements-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .modal-content {
+        margin: 1rem;
+        max-height: calc(100vh - 2rem);
+    }
+    
+    .home-header h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-section h2 {
+        font-size: 1.8rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-content {
+        padding: 1rem;
+    }
+    
+    .logo-section h1 {
+        font-size: 1.2rem;
+    }
+    
+    .stat-card {
+        padding: 1rem;
+    }
+    
+    .stat-icon {
+        font-size: 2rem;
+    }
+    
+    .stat-value {
+        font-size: 1.5rem;
+    }
+    
+    .calendar-day {
+        min-height: 60px;
+        padding: 0.5rem;
+    }
+    
+    .day-label {
+        font-size: 0.7rem;
+    }
+    
+    .workout-item {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.4rem;
+    }
+    
+    .measurements-grid {
+        grid-template-columns: 1fr;
+    }
+}
