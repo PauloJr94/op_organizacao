@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login</title>
   <link rel="stylesheet" href="login.css" />
 </head>
+
 <body>
   <div class="login-container">
     <h2>Login</h2>
     <form id="login-form">
-      <input type="email" id="email" placeholder="E-mail" required />
-      <input type="password" id="password" placeholder="Senha" required />
-      <button type="submit">Entrar</button>
-      <p id="error-message" style="color: red; margin-top: 10px;"></p>
+      <div class="input-container">
+        <input type="email" id="email" placeholder="Email" required />
+        <input type="password" id="password" placeholder="Senha" required />
+      </div>
+
+      <div class="button-container">
+        <button class="btn-left">Entrar</button>
+        <button class="btn-right" onclick="window.location.href='cadastro.html'">Criar Conta</button>
+      </div>
+
+      <p id="error-message" style="color: red;"></p>
     </form>
   </div>
   <script src="login.js" type="module"></script>

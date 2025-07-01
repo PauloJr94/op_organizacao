@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,235 +8,238 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <div class="container">
         <!-- Cabeçalho -->
         <header class="header">
             <div class="header-title">
-                 <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle menu">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                 </button>
+                <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
                 <div class="skull-icon">💀</div>
-               <h1>OPERAÇÃO PLANO DE ESTUDOS <span> - Em Busca da Aprovação</span></h1>
+                <h1>OPERAÇÃO PLANO DE ESTUDOS <span> - Em Busca da Aprovação</span></h1>
                 <!-- Header -->
-    <!--<header class="header">
+                <!--<header class="header">
         <div class="header-container">-->
-             <!--Hamburger Menu Button--> 
+                <!--Hamburger Menu Button-->
 
 
-            <!-- Header Title 
+                <!-- Header Title 
             <div class="header-title">
                 
                 <h1>OPERAÇÃO PLANO DE ESTUDOS</h1>
                 <span class="subtitle">Em Busca da Aprovação</span>
             </div>-->
-        </div>
+            </div>
             <div class="carousel">
                 <div class="carousel-track">
                     <div class="carousel-slide"><img src="logo.png" alt="logos"></div>
                 </div>
             </div>
-    </header>
+        </header>
 
-    <!-- Overlay -->
-    <div id="overlay" class="overlay"></div>
+        <!-- Overlay -->
+        <div id="overlay" class="overlay"></div>
 
-    <!-- Sidebar -->
-    <div id="sidebar" class="sidebar">
-        <!-- Sidebar Header -->
-        <div class="sidebar-header">
-            <h2>Menu Principal</h2>
-            <button id="close-btn" class="close-btn" aria-label="Close menu">
-                <span class="close-icon">×</span>
-            </button>
-        </div>
-
-        <!-- Menu Items -->
-        <nav class="sidebar-nav">
-            <ul class="menu-list">
-                <li>
-                    <a href="rotinas.html" class="menu-item">
-                        <div class="menu-icon-group">
-                            <span class="menu-emoji">📅</span>
-                            <span class="menu-text">Rotinas</span>
-                        </div>
-                        <span class="item-count" id="count-rotinas">0</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="estudos.html" class="menu-item">
-                        <div class="menu-icon-group">
-                            <span class="menu-emoji">📘</span>
-                            <span class="menu-text">Estudos</span>
-                        </div>
-                        <span class="item-count" id="count-estudos">0</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="simulados.html" class="menu-item">
-                        <div class="menu-icon-group">
-                            <span class="menu-emoji">🧠</span>
-                            <span class="menu-text">Simulados</span>
-                        </div>
-                        <span class="item-count" id="count-simulados">0</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="treinos.html" class="menu-item">
-                        <div class="menu-icon-group">
-                            <span class="menu-emoji">💪</span>
-                            <span class="menu-text">Treinos</span>
-                        </div>
-                        <span class="item-count" id="count-treinos">0</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="materias.html" class="menu-item">
-                        <div class="menu-icon-group">
-                            <span class="menu-emoji">🗂️</span>
-                            <span class="menu-text">Materias</span>
-                        </div>
-                        <span class="item-count" id="count-materias">0</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="progresso.html" class="menu-item">
-                        <div class="menu-icon-group">
-                            <span class="menu-emoji">📊</span>
-                            <span class="menu-text">Progresso</span>
-                        </div>
-                        <span class="item-count" id="count-progresso">0</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="configuracoes.html" class="menu-item">
-                        <div class="menu-icon-group">
-                            <span class="menu-emoji">⚙️</span>
-                            <span class="menu-text">Configurações</span>
-                        </div>
-                        <span class="item-count" id="count-configuracoes">0</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
-        <!-- Sidebar Footer -->
-        <div class="sidebar-footer">
-            <p class="version">Versão 1.0</p>
-            <div class="status">
-                <div class="status-dot"></div>
-                <span>Sistema Online</span>
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar">
+            <!-- Sidebar Header -->
+            <div class="sidebar-header">
+                <h2>Menu Principal</h2>
+                <button id="close-btn" class="close-btn" aria-label="Close menu">
+                    <span class="close-icon">×</span>
+                </button>
             </div>
-        </div>
-    </div>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Welcome Screen -->
-        <div id="welcome-screen" class="welcome-content">
-            <div class="welcome-card">
+            <!-- Menu Items -->
+            <nav class="sidebar-nav">
+                <ul class="menu-list">
+                    <li>
+                        <a href="rotinas.html" class="menu-item">
+                            <div class="menu-icon-group">
+                                <span class="menu-emoji">📅</span>
+                                <span class="menu-text">Rotinas</span>
+                            </div>
+                            <span class="item-count" id="count-rotinas">0</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="estudos.html" class="menu-item">
+                            <div class="menu-icon-group">
+                                <span class="menu-emoji">📘</span>
+                                <span class="menu-text">Estudos</span>
+                            </div>
+                            <span class="item-count" id="count-estudos">0</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="simulados.html" class="menu-item">
+                            <div class="menu-icon-group">
+                                <span class="menu-emoji">🧠</span>
+                                <span class="menu-text">Simulados</span>
+                            </div>
+                            <span class="item-count" id="count-simulados">0</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="treinos.html" class="menu-item">
+                            <div class="menu-icon-group">
+                                <span class="menu-emoji">💪</span>
+                                <span class="menu-text">Treinos</span>
+                            </div>
+                            <span class="item-count" id="count-treinos">0</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="materias.html" class="menu-item">
+                            <div class="menu-icon-group">
+                                <span class="menu-emoji">🗂️</span>
+                                <span class="menu-text">Materias</span>
+                            </div>
+                            <span class="item-count" id="count-materias">0</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="progresso.html" class="menu-item">
+                            <div class="menu-icon-group">
+                                <span class="menu-emoji">📊</span>
+                                <span class="menu-text">Progresso</span>
+                            </div>
+                            <span class="item-count" id="count-progresso">0</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="configuracoes.html" class="menu-item">
+                            <div class="menu-icon-group">
+                                <span class="menu-emoji">⚙️</span>
+                                <span class="menu-text">Configurações</span>
+                            </div>
+                            <span class="item-count" id="count-configuracoes">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Sidebar Footer -->
+            <div class="sidebar-footer">
+                <p class="version">Versão 1.0</p>
+                <div class="status">
+                    <div class="status-dot"></div>
+                    <span>Sistema Online</span>
+                </div>
             </div>
         </div>
 
-        <!-- Tabs -->
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Welcome Screen -->
+            <div id="welcome-screen" class="welcome-content">
+                <div class="welcome-card">
+                </div>
+            </div>
+
+            <!-- Tabs -->
             <div id="tab-estudos" class="tab-content" style="display: none;">
-            <div class="tab-header">
-                <div class="tab-title">
-                    <span class="tab-emoji">📘</span>
-                    <h2>Estudos</h2>
+                <div class="tab-header">
+                    <div class="tab-title">
+                        <span class="tab-emoji">📘</span>
+                        <h2>Estudos</h2>
+                    </div>
+                    <button class="close-tab-btn" data-tab="estudos">×</button>
                 </div>
-                <button class="close-tab-btn" data-tab="estudos">×</button>
+                <div class="add-section">
+                    <input type="text" id="input-estudos" placeholder="Adicionar novo estudo..." class="add-input">
+                    <button class="add-btn" data-tab="estudos">Adicionar</button>
+                </div>
+                <div class="items-list" id="list-estudos"></div>
+                <div class="stats-section" id="stats-estudos" style="display: none;"></div>
             </div>
-            <div class="add-section">
-                <input type="text" id="input-estudos" placeholder="Adicionar novo estudo..." class="add-input">
-                <button class="add-btn" data-tab="estudos">Adicionar</button>
-            </div>
-            <div class="items-list" id="list-estudos"></div>
-            <div class="stats-section" id="stats-estudos" style="display: none;"></div>
-        </div>
 
-        <div id="tab-simulados" class="tab-content" style="display: none;">
-            <div class="tab-header">
-                <div class="tab-title">
-                    <span class="tab-emoji">🧠</span>
-                    <h2>Simulados</h2>
+            <div id="tab-simulados" class="tab-content" style="display: none;">
+                <div class="tab-header">
+                    <div class="tab-title">
+                        <span class="tab-emoji">🧠</span>
+                        <h2>Simulados</h2>
+                    </div>
+                    <button class="close-tab-btn" data-tab="simulados">×</button>
                 </div>
-                <button class="close-tab-btn" data-tab="simulados">×</button>
+                <div class="add-section">
+                    <input type="text" id="input-simulados" placeholder="Adicionar novo simulado..." class="add-input">
+                    <button class="add-btn" data-tab="simulados">Adicionar</button>
+                </div>
+                <div class="items-list" id="list-simulados"></div>
+                <div class="stats-section" id="stats-simulados" style="display: none;"></div>
             </div>
-            <div class="add-section">
-                <input type="text" id="input-simulados" placeholder="Adicionar novo simulado..." class="add-input">
-                <button class="add-btn" data-tab="simulados">Adicionar</button>
-            </div>
-            <div class="items-list" id="list-simulados"></div>
-            <div class="stats-section" id="stats-simulados" style="display: none;"></div>
-        </div>
 
-        <div id="tab-treinos" class="tab-content" style="display: none;">
-            <div class="tab-header">
-                <div class="tab-title">
-                    <span class="tab-emoji">💪</span>
-                    <h2>Treinos</h2>
+            <div id="tab-treinos" class="tab-content" style="display: none;">
+                <div class="tab-header">
+                    <div class="tab-title">
+                        <span class="tab-emoji">💪</span>
+                        <h2>Treinos</h2>
+                    </div>
+                    <button class="close-tab-btn" data-tab="treinos">×</button>
                 </div>
-                <button class="close-tab-btn" data-tab="treinos">×</button>
+                <div class="add-section">
+                    <input type="text" id="input-treinos" placeholder="Adicionar novo treino..." class="add-input">
+                    <button class="add-btn" data-tab="treinos">Adicionar</button>
+                </div>
+                <div class="items-list" id="list-treinos"></div>
+                <div class="stats-section" id="stats-treinos" style="display: none;"></div>
             </div>
-            <div class="add-section">
-                <input type="text" id="input-treinos" placeholder="Adicionar novo treino..." class="add-input">
-                <button class="add-btn" data-tab="treinos">Adicionar</button>
-            </div>
-            <div class="items-list" id="list-treinos"></div>
-            <div class="stats-section" id="stats-treinos" style="display: none;"></div>
-        </div>
 
-        <div id="tab-materiais" class="tab-content" style="display: none;">
-            <div class="tab-header">
-                <div class="tab-title">
-                    <span class="tab-emoji">🗂️</span>
-                    <h2>Materiais</h2>
+            <div id="tab-materiais" class="tab-content" style="display: none;">
+                <div class="tab-header">
+                    <div class="tab-title">
+                        <span class="tab-emoji">🗂️</span>
+                        <h2>Materiais</h2>
+                    </div>
+                    <button class="close-tab-btn" data-tab="materiais">×</button>
                 </div>
-                <button class="close-tab-btn" data-tab="materiais">×</button>
+                <div class="add-section">
+                    <input type="text" id="input-materiais" placeholder="Adicionar novo material..." class="add-input">
+                    <button class="add-btn" data-tab="materiais">Adicionar</button>
+                </div>
+                <div class="items-list" id="list-materiais"></div>
+                <div class="stats-section" id="stats-materiais" style="display: none;"></div>
             </div>
-            <div class="add-section">
-                <input type="text" id="input-materiais" placeholder="Adicionar novo material..." class="add-input">
-                <button class="add-btn" data-tab="materiais">Adicionar</button>
-            </div>
-            <div class="items-list" id="list-materiais"></div>
-            <div class="stats-section" id="stats-materiais" style="display: none;"></div>
-        </div>
 
-        <div id="tab-progresso" class="tab-content" style="display: none;">
-            <div class="tab-header">
-                <div class="tab-title">
-                    <span class="tab-emoji">📊</span>
-                    <h2>Progresso</h2>
+            <div id="tab-progresso" class="tab-content" style="display: none;">
+                <div class="tab-header">
+                    <div class="tab-title">
+                        <span class="tab-emoji">📊</span>
+                        <h2>Progresso</h2>
+                    </div>
+                    <button class="close-tab-btn" data-tab="progresso">×</button>
                 </div>
-                <button class="close-tab-btn" data-tab="progresso">×</button>
+                <div class="add-section">
+                    <input type="text" id="input-progresso" placeholder="Adicionar meta de progresso..."
+                        class="add-input">
+                    <button class="add-btn" data-tab="progresso">Adicionar</button>
+                </div>
+                <div class="items-list" id="list-progresso"></div>
+                <div class="stats-section" id="stats-progresso" style="display: none;"></div>
             </div>
-            <div class="add-section">
-                <input type="text" id="input-progresso" placeholder="Adicionar meta de progresso..." class="add-input">
-                <button class="add-btn" data-tab="progresso">Adicionar</button>
-            </div>
-            <div class="items-list" id="list-progresso"></div>
-            <div class="stats-section" id="stats-progresso" style="display: none;"></div>
-        </div>
 
-        <div id="tab-configuracoes" class="tab-content" style="display: none;">
-            <div class="tab-header">
-                <div class="tab-title">
-                    <span class="tab-emoji">⚙️</span>
-                    <h2>Configurações</h2>
+            <div id="tab-configuracoes" class="tab-content" style="display: none;">
+                <div class="tab-header">
+                    <div class="tab-title">
+                        <span class="tab-emoji">⚙️</span>
+                        <h2>Configurações</h2>
+                    </div>
+                    <button class="close-tab-btn" data-tab="configuracoes">×</button>
                 </div>
-                <button class="close-tab-btn" data-tab="configuracoes">×</button>
+                <div class="add-section">
+                    <input type="text" id="input-configuracoes" placeholder="Adicionar configuração..."
+                        class="add-input">
+                    <button class="add-btn" data-tab="configuracoes">Adicionar</button>
+                </div>
+                <div class="items-list" id="list-configuracoes"></div>
+                <div class="stats-section" id="stats-configuracoes" style="display: none;"></div>
             </div>
-            <div class="add-section">
-                <input type="text" id="input-configuracoes" placeholder="Adicionar configuração..." class="add-input">
-                <button class="add-btn" data-tab="configuracoes">Adicionar</button>
-            </div>
-            <div class="items-list" id="list-configuracoes"></div>
-            <div class="stats-section" id="stats-configuracoes" style="display: none;"></div>
-        </div>
-    </main>        
+        </main>
         </header>
 
         <!-- Sidebar Esquerda -->
@@ -262,102 +266,104 @@
                         <div class="flip-card">2</div>
                     </div>
                 </div>
-            <div class="current-date">Thursday, March 14, 2024</div>
+                <div class="current-date">Thursday, March 14, 2024</div>
 
-        <!--Proxima Missao-->
-    <div class="next-mission">
-        <div class="missions-widget" id="missions-widget">
-        <!-- conteúdo: botão, inputs, etc. -->
-            <!-- Header -->
-                <div class="header-left">
-                    <svg class="target-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <circle cx="12" cy="12" r="6"/>
-                        <circle cx="12" cy="12" r="2"/>
-                    </svg>
-                </div>
-                <div class="missions-title">Proximas Missões</div>
-                <div class="counter" style="font-size: 14px;">
-                    <span id="missions-counter">0</span> ativo
-                </div>
-                
+                <!--Proxima Missao-->
+                <div class="next-mission">
+                    <div class="missions-widget" id="missions-widget">
+                        <!-- conteúdo: botão, inputs, etc. -->
+                        <!-- Header -->
+                        <div class="header-left">
+                            <svg class="target-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                            </svg>
+                        </div>
+                        <div class="missions-header">
+                            <div class="missions-title">Próximas Missões</div>
+                            <div class="counter">
+                                <span id="missions-counter">0</span> ativo
+                            </div>
+                        </div>
 
-            <!-- Add Mission Button -->
-            <button class="add-btn" id="add-btn">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="12" y1="5" x2="12" y2="19"/>
-                    <line x1="5" y1="12" x2="19" y2="12"/>
-                </svg>
-                Nova Missão
-            </button>
+                        <!-- Add Mission Button -->
+                        <button class="add-btn" id="add-btn">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19" />
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                            </svg>
+                            Nova Missão
+                        </button>
 
-            <!-- Mission Form -->
-            <div class="mission-form" id="mission-form" style="display: none;">
-                <div class="form-header">
-                    <span>Nova Missão</span>
-                    <button class="close-btn" id="close-form">×</button>
-                </div>
-                <form id="add-mission-form">
-                    <input type="text" id="mission-name" placeholder="Nome" required>
-                    <input type="date" id="mission-date" required>
-                    <div class="form-buttons">
-                        <button type="submit" class="save-btn">Salvar</button>
-                        <button type="button" class="cancel-btn" id="cancel-form">×</button>
+                        <!-- Mission Form -->
+                        <div class="mission-form" id="mission-form" style="display: none;">
+                            <div class="form-header">
+                                <span>Nova Missão</span>
+                                <button class="close-btn" id="close-form">×</button>
+                            </div>
+                            <form id="add-mission-form">
+                                <input type="text" id="mission-name" placeholder="Nome" required>
+                                <input type="date" id="mission-date" required>
+                                <div class="form-buttons">
+                                    <button type="submit" class="save-btn">Salvar</button>
+                                    <button type="button" class="cancel-btn" id="cancel-form">×</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Missions List -->
+                        <div class="missions-list" id="missions-list">
+                            <div class="empty-state" id="empty-state">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <circle cx="12" cy="12" r="6" />
+                                    <circle cx="12" cy="12" r="2" />
+                                </svg>
+                                <p>Nenhuma missão ativa</p>
+                            </div>
+                        </div>
                     </div>
-                </form>
-            </div>
-
-            <!-- Missions List -->
-            <div class="missions-list" id="missions-list">
-                <div class="empty-state" id="empty-state">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <circle cx="12" cy="12" r="6"/>
-                        <circle cx="12" cy="12" r="2"/>
-                    </svg>
-                    <p>Nenhuma missão ativa</p>
                 </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Delete Modal -->
-    <div class="modal-overlay" id="delete-modal" style="display: none;">
-        <div class="modal">
-            <div class="modal-header">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
-                    <line x1="12" y1="9" x2="12" y2="13"/>
-                    <line x1="12" y1="17" x2="12.01" y2="17"/>
-                </svg>
-                <h3>Confirmar</h3>
-                <button class="modal-close" id="modal-close">×</button>
-            </div>
-            <div class="modal-body">
-                <p>Excluir a missão:</p>
-                <p class="mission-name" id="delete-mission-name"></p>
-            </div>
-            <div class="modal-footer">
-                <button class="modal-cancel" id="modal-cancel">Cancelar</button>
-                <button class="modal-confirm" id="modal-confirm">Excluir</button>
-            </div>
-        </div>
-    </div>
-            <!--MOTIVACAO-->
-            <div class="motivation">
-                <p>"Missão dada é missão cumprida."</p>
-            </div>
-
-            <!--POMODORO-->
-            <div class="pomodoro">
-                <h4>Tempo de Operação</h4>
-                <div id="pomodoro-timer">01:30:00</div>
-                <div class="pomodoro-controls">
-                    <button id="pomodoro-start"><i class="fas fa-play"></i></button>
-                    <button id="pomodoro-reset"><i class="fas fa-redo"></i></button>
+                <!-- Delete Modal -->
+                <div class="modal-overlay" id="delete-modal" style="display: none;">
+                    <div class="modal">
+                        <div class="modal-header">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                                <line x1="12" y1="9" x2="12" y2="13" />
+                                <line x1="12" y1="17" x2="12.01" y2="17" />
+                            </svg>
+                            <h3>Confirmar</h3>
+                            <button class="modal-close" id="modal-close">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Excluir a missão:</p>
+                            <p class="mission-name" id="delete-mission-name"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="modal-cancel" id="modal-cancel">Cancelar</button>
+                            <button class="modal-confirm" id="modal-confirm">Excluir</button>
+                        </div>
+                    </div>
                 </div>
-                <p>Ciclo: <span id="pomodoro-cycle">1/4</span></p>
-            </div>
+                <!--MOTIVACAO-->
+                <div class="motivation">
+                    <p>"Missão dada é missão cumprida."</p>
+                </div>
+
+                <!--POMODORO-->
+                <div class="pomodoro">
+                    <h4>Tempo de Operação</h4>
+                    <div id="pomodoro-timer">01:30:00</div>
+                    <div class="pomodoro-controls">
+                        <button id="pomodoro-start"><i class="fas fa-play"></i></button>
+                        <button id="pomodoro-reset"><i class="fas fa-redo"></i></button>
+                    </div>
+                    <p>Ciclo: <span id="pomodoro-cycle">1/4</span></p>
+                </div>
         </aside>
 
         <!-- Conteúdo Principal -->
@@ -366,40 +372,40 @@
             </section>
 
             <!--CALENDARIO-->
- <section class="calendar-section">
-      <h2><i class="fas fa-calendar-alt"></i> Calendário Operacional</h2>
-      <div class="calendar">
-        <div class="calendar-header">
-          <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
-          <h3 id="current-month"></h3>
-          <button id="next-month"><i class="fas fa-chevron-right"></i></button>
-        </div>
-        <div class="calendar-weekdays">
-          <div>Dom</div>
-          <div>Seg</div>
-          <div>Ter</div>
-          <div>Qua</div>
-          <div>Qui</div>
-          <div>Sex</div>
-          <div>Sáb</div>
-        </div>
-        <div class="calendar-days" id="calendar-days">
-          <!-- Dias serão gerados por JavaScript -->
-        </div>
-      </div>
-      <button id="add-event" class="add-event-btn">+ Adicionar Evento</button>
-    </section>
+            <section class="calendar-section">
+                <h2><i class="fas fa-calendar-alt"></i> Calendário Operacional</h2>
+                <div class="calendar">
+                    <div class="calendar-header">
+                        <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
+                        <h3 id="current-month"></h3>
+                        <button id="next-month"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="calendar-weekdays">
+                        <div>Dom</div>
+                        <div>Seg</div>
+                        <div>Ter</div>
+                        <div>Qua</div>
+                        <div>Qui</div>
+                        <div>Sex</div>
+                        <div>Sáb</div>
+                    </div>
+                    <div class="calendar-days" id="calendar-days">
+                        <!-- Dias serão gerados por JavaScript -->
+                    </div>
+                </div>
+                <button id="add-event" class="add-event-btn">+ Adicionar Evento</button>
+            </section>
 
             <!--CARROSSEL-->
-            <div class="weekly-missions">  <!-- forma retangular azul claro -->
-            <h2><i class="fas fa-bullseye"></i> Missões da Semana</h2>
-            <div class="carousel-container">
-                <button id="prevDay" class="carousel-button prev">‹</button>
-                   <div class="missions-container" id="weekly-tasks"> 
-                <!-- cards de dias vão aqui, cada um com .day-card -->
-                   </div>
-                   <button id="nextDay" class="carousel-button next">›</button>
-            </div>
+            <div class="weekly-missions"> <!-- forma retangular azul claro -->
+                <h2><i class="fas fa-bullseye"></i> Missões da Semana</h2>
+                <div class="carousel-container">
+                    <button id="prevDay" class="carousel-button prev">‹</button>
+                    <div class="missions-container" id="weekly-tasks">
+                        <!-- cards de dias vão aqui, cada um com .day-card -->
+                    </div>
+                    <button id="nextDay" class="carousel-button next">›</button>
+                </div>
             </div>
 
             <!--DESEMPENHO TATICO - MATERIAS-->
@@ -499,4 +505,5 @@
 
     <script type="module" src="script.js"></script>
 </body>
+
 </html>

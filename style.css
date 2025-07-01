@@ -949,7 +949,7 @@ body {
 
 .missions-widget {
     width: 207px;
-    background: linear-gradient(to bottom, #1e3a8a, #1e40af);
+    background: #001f3d;
     padding: 15px;
     border-radius: 5px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
@@ -979,16 +979,32 @@ body {
     font-weight: 600;
 }
 
+.missions-header {
+    position: relative;
+}
+
+.missions-title {
+  font-weight: bold;
+  color: #fbbf24;
+}
+
 .counter {
+    position: absolute;
+    top: -25px;
+    right: 0;
     background: #fbbf24;
     color: #1e3a8a;
     padding: 4px 8px;
     border-radius: 9999px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
+    z-index: 1;
 }
 
+
 .missions-title {
+    position: absolute;
+    top: -25px;
     color: #fbbf24;
     font-size: 14px;
     font-weight: 600;
@@ -1139,13 +1155,12 @@ body {
     /*group: hover;*/
 }
 
-.mission-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 4px;
+.missions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
 }
-
 .mission-name {
     color: white;
     font-size: 12px;

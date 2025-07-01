@@ -5,7 +5,7 @@
 }
 
 body {
-  background: black url('bope.png') no-repeat center center fixed;
+  background: black url('prf2.png') no-repeat center center fixed;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   height: 100vh;
   display: flex;
@@ -25,6 +25,12 @@ body {
   text-align: center;
 }
 
+h2 {
+  margin-bottom: 20px;
+  color: black;
+  text-align: center;
+}
+
 input {
   display: block;
   width: 100%;
@@ -40,7 +46,7 @@ button {
   padding: 0.8rem;
   border: none;
   border-radius: 8px;
-  background-color: #4f46e5;
+  background-color: #001f3d;
   color: white;
   font-weight: bold;
   cursor: pointer;
@@ -48,11 +54,34 @@ button {
 }
 
 button:hover {
-  background-color: #4338ca;
+  background-color: #001f3d;
 }
 
 #error-message {
   color: #f87171;
   margin-top: 0.5rem;
   font-size: 0.9rem;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px; /* Espaço entre os botões */
+  margin-top: 10px;
+}
+
+.btn-left, .btn-right{
+  flex: 1; /* Faz os botões ocuparem o mesmo espaço */
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  background-color: #001f3f; /* Azul escuro (PRF style) */
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-left:hover, .btn-right:hover, .btn-confirm:hover {
+  background-color: #003366; /* Um tom mais claro no hover */
 }
