@@ -1,45 +1,266 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estudos - Gerenciador Moderno</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/page.css">
+    <title>Sistema de Controle de Rotina de Estudos</title>
+    <link rel="stylesheet" href="estudos.css">
+    <link href="https://unpkg.com/lucide@latest/dist/umd/lucide.js" rel="stylesheet">
 </head>
+
 <body>
-    <div class="container">
-        <header class="page-header">
-            <a href="home.html" class="back-btn">
-                <span>←</span>
-                <span>Voltar</span>
-            </a>
-            <div class="page-title">
-                <div class="page-icon">📚</div>
-                <h1>Estudos</h1>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i data-lucide="book-open" class="logo-icon"></i>
+                    <h1>Controle de Estudos</h1>
+                </div>
+
+                <nav class="nav-desktop">
+                    <button class="nav-btn active" onclick="window.location.href='home.html'">
+                        <i data-lucide="book-open"></i>
+                        <span>Dashboard</span>
+                    </button>
+
+                    <button class="nav-btn" data-tab="subjects">
+                        <i data-lucide="target"></i>
+                        <span>Matérias</span>
+                    </button>
+                    <button class="nav-btn" data-tab="schedule">
+                        <i data-lucide="calendar"></i>
+                        <span>Agenda</span>
+                    </button>
+                </nav>
             </div>
-        </header>
 
-        <main class="page-content">
-            <div class="add-section">
-                <input type="text" id="item-input" placeholder="Adicionar novo estudo..." class="add-input">
-                <button class="add-btn" onclick="addItem()">Adicionar</button>
+            <!-- Mobile Navigation -->
+            <nav class="nav-mobile">
+                <button class="nav-btn active" data-tab="dashboard">
+                    <i data-lucide="book-open"></i>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-btn" data-tab="subjects">
+                    <i data-lucide="target"></i>
+                    <span>Matérias</span>
+                </button>
+                <button class="nav-btn" data-tab="schedule">
+                    <i data-lucide="calendar"></i>
+                    <span>Agenda</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Dashboard Tab -->
+            <div id="dashboard" class="tab-content active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <p class="stat-label">Total de Horas</p>
+                                <p class="stat-value" id="total-hours">0</p>
+                            </div>
+                            <i data-lucide="clock" class="stat-icon"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <p class="stat-label">Questões Feitas</p>
+                                <p class="stat-value" id="total-questions">0</p>
+                            </div>
+                            <i data-lucide="check-circle" class="stat-icon"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <p class="stat-label">Matérias</p>
+                                <p class="stat-value" id="total-subjects">0</p>
+                            </div>
+                            <i data-lucide="trending-up" class="stat-icon"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <p class="stat-label">Eventos Próximos</p>
+                                <p class="stat-value" id="upcoming-events">0</p>
+                            </div>
+                            <i data-lucide="alert-circle" class="stat-icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subject Progress -->
+                <div class="card">
+                    <h3 class="card-title">Progresso das Matérias</h3>
+                    <div id="subjects-progress" class="progress-list">
+                        <p class="empty-state">Nenhuma matéria cadastrada</p>
+                    </div>
+                </div>
+
+                <!-- Recommendations and Events -->
+                <div class="grid-2">
+                    <div class="card">
+                        <h3 class="card-title">Recomendações de Estudo</h3>
+                        <div id="recommendations" class="recommendations-list">
+                            <p class="empty-state">Adicione matérias para ver recomendações</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">Próximos Eventos</h3>
+                        <div id="upcoming-events-list" class="events-list">
+                            <p class="empty-state">Nenhum evento agendado</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="stats-toggle">
-                <button class="stats-btn" onclick="toggleStats()">📊 Mostrar Estatísticas</button>
+            <!-- Subjects Tab -->
+            <div id="subjects" class="tab-content">
+                <div class="tab-header">
+                    <h2 class="tab-title">Gerenciar Matérias</h2>
+                    <button class="btn-primary" id="add-subject-btn">
+                        <i data-lucide="plus"></i>
+                        <span>Adicionar Matéria</span>
+                    </button>
+                </div>
+
+                <!-- Add Subject Form -->
+                <div id="add-subject-form" class="form-card hidden">
+                    <h3 class="form-title">Nova Matéria</h3>
+                    <form id="subject-form" class="form-grid">
+                        <div class="form-group">
+                            <label>Nome da Matéria</label>
+                            <input type="text" id="subject-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Peso (1-10)</label>
+                            <input type="number" id="subject-weight" min="1" max="10" value="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Método de Estudo</label>
+                            <input type="text" id="subject-method" placeholder="Ex: Videoaulas, Livros, Exercícios"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label>Meta de Horas</label>
+                            <input type="number" id="subject-target" min="1" value="10" required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">Adicionar</button>
+                            <button type="button" class="btn-secondary" id="cancel-subject">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Subjects Grid -->
+                <div id="subjects-grid" class="subjects-grid">
+                    <p class="empty-state">Nenhuma matéria cadastrada</p>
+                </div>
             </div>
 
-            <div class="stats-section" id="stats-section"></div>
+            <!-- Schedule Tab -->
+            <div id="schedule" class="tab-content">
+                <div class="tab-header">
+                    <h2 class="tab-title">Agenda de Estudos</h2>
+                    <button class="btn-primary" id="add-event-btn">
+                        <i data-lucide="plus"></i>
+                        <span>Agendar Evento</span>
+                    </button>
+                </div>
 
-            <div class="items-list" id="items-list"></div>
-        </main>
+                <!-- Add Event Form -->
+                <div id="add-event-form" class="form-card hidden">
+                    <h3 class="form-title">Novo Evento</h3>
+                    <form id="event-form" class="form-grid">
+                        <div class="form-group">
+                            <label>Tipo</label>
+                            <select id="event-type" required>
+                                <option value="simulado">Simulado</option>
+                                <option value="redacao">Redação</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Título</label>
+                            <input type="text" id="event-title" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Data</label>
+                            <input type="date" id="event-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Horário</label>
+                            <input type="time" id="event-time" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Descrição</label>
+                            <textarea id="event-description"
+                                placeholder="Adicione detalhes sobre o evento..."></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">Agendar</button>
+                            <button type="button" class="btn-secondary" id="cancel-event">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Events Lists -->
+                <div class="card">
+                    <h3 class="card-title">
+                        <i data-lucide="calendar"></i>
+                        Próximos Eventos
+                    </h3>
+                    <div id="upcoming-events-schedule" class="events-schedule">
+                        <p class="empty-state">Nenhum evento agendado</p>
+                    </div>
+                </div>
+
+                <div id="past-events-card" class="card hidden">
+                    <h3 class="card-title">Eventos Anteriores</h3>
+                    <div id="past-events-schedule" class="events-schedule">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Study Session Modal -->
+    <div id="study-modal" class="modal hidden">
+        <div class="modal-content">
+            <h4 class="modal-title">Registrar Sessão de Estudo</h4>
+            <form id="study-form" class="study-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Horas</label>
+                        <input type="number" id="study-duration" step="0.5" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Questões</label>
+                        <input type="number" id="study-questions" min="0" value="0">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Método</label>
+                    <input type="text" id="study-method" placeholder="Ex: Videoaulas">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Salvar</button>
+                    <button type="button" class="btn-secondary" id="cancel-study">Cancelar</button>
+                </div>
+            </form>
+        </div>
     </div>
 
-    <script src="js/common.js"></script>
-    <script src="js/page-manager.js"></script>
-    <script>
-        const pageManager = new PageManager('estudos');
-    </script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="estudos.js"></script>
 </body>
+
 </html>
