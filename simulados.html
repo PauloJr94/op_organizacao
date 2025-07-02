@@ -1,45 +1,401 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulados - Gerenciador Moderno</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/page.css">
+    <title>Sistema de Simulados</title>
+    <link rel="stylesheet" href="simulados.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
+
 <body>
-    <div class="container">
-        <header class="page-header">
-            <a href="home.html" class="back-btn">
-                <span>←</span>
-                <span>Voltar</span>
-            </a>
-            <div class="page-title">
-                <div class="page-icon">📝</div>
-                <h1>Simulados</h1>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <!-- Botão hambúrguer -->
+                <button id="hamburger-btn" class="hamburger-btn" aria-label="Abrir menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+
+                <div class="header-title">
+                    <i class="fas fa-bullseye"></i>
+                    <h1>Simulados</h1>
+                </div>
             </div>
-        </header>
+            <button class="btn-add" onclick="toggleAddForm()">
+                <i class="fas fa-plus"></i>
+                <span>Adicionar Simulado</span>
+            </button>
+        </div>
+    </header>
 
-        <main class="page-content">
-            <div class="add-section">
-                <input type="text" id="item-input" placeholder="Adicionar novo simulado..." class="add-input">
-                <button class="add-btn" onclick="addItem()">Adicionar</button>
+    
+<!-- Sidebar -->
+<aside id="sidebar1" class="sidebar1">
+
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar">
+            <!-- Sidebar Header -->
+            <div class="sidebar-header">
+                <h2>Menu Principal</h2>
+                <button id="close-btn" class="close-btn" aria-label="Close menu">
+                    <span class="close-icon">×</span>
+                </button>
             </div>
 
-            <div class="stats-toggle">
-                <button class="stats-btn" onclick="toggleStats()">📊 Mostrar Estatísticas</button>
-            </div>
+    <!-- Menu Items -->
+    <nav class="sidebar-nav">
+        <ul class="menu-list">
+            <li>
+                <a href="rotinas.html" class="menu-item">
+                    <div class="menu-icon-group">
+                        <span class="menu-emoji">📅</span>
+                        <span class="menu-text">Rotinas</span>
+                    </div>
+                    <span class="item-count" id="count-rotinas">0</span>
+                </a>
+            </li>
+            <li>
+                <a href="estudos.html" class="menu-item">
+                    <div class="menu-icon-group">
+                        <span class="menu-emoji">📘</span>
+                        <span class="menu-text">Estudos</span>
+                    </div>
+                    <span class="item-count" id="count-estudos">0</span>
+                </a>
+            </li>
+            <li>
+                <a href="simulados.html" class="menu-item">
+                    <div class="menu-icon-group">
+                        <span class="menu-emoji">🧠</span>
+                        <span class="menu-text">Simulados</span>
+                    </div>
+                    <span class="item-count" id="count-simulados">0</span>
+                </a>
+            </li>
+            <li>
+                <a href="treinos.html" class="menu-item">
+                    <div class="menu-icon-group">
+                        <span class="menu-emoji">💪</span>
+                        <span class="menu-text">Treinos</span>
+                    </div>
+                    <span class="item-count" id="count-treinos">0</span>
+                </a>
+            </li>
+            <li>
+                <a href="materias.html" class="menu-item">
+                    <div class="menu-icon-group">
+                        <span class="menu-emoji">🗂️</span>
+                        <span class="menu-text">Materias</span>
+                    </div>
+                    <span class="item-count" id="count-materias">0</span>
+                </a>
+            </li>
+            <li>
+                <a href="progresso.html" class="menu-item">
+                    <div class="menu-icon-group">
+                        <span class="menu-emoji">📊</span>
+                        <span class="menu-text">Progresso</span>
+                    </div>
+                    <span class="item-count" id="count-progresso">0</span>
+                </a>
+            </li>
+            <li>
+                <a href="configuracoes.html" class="menu-item">
+                    <div class="menu-icon-group">
+                        <span class="menu-emoji">⚙️</span>
+                        <span class="menu-text">Configurações</span>
+                    </div>
+                    <span class="item-count" id="count-configuracoes">0</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 
-            <div class="stats-section" id="stats-section"></div>
+    <!-- Sidebar Footer -->
+    <div class="sidebar-footer">
+        <p class="version">Versão 1.0</p>
+        <div class="status">
+            <div class="status-dot"></div>
+            <span>Sistema Online</span>
+        </div>
+    </div>
+</aside>
 
-            <div class="items-list" id="items-list"></div>
-        </main>
+
+<!-- Main Content -->
+<main class="main-content">
+    <!-- Welcome Screen -->
+    <div id="welcome-screen" class="welcome-content">
+        <div class="welcome-card">
+        </div>
     </div>
 
-    <script src="js/common.js"></script>
-    <script src="js/page-manager.js"></script>
-    <script>
-        const pageManager = new PageManager('simulados');
-    </script>
+    <!-- Tabs -->
+    <div id="tab-estudos" class="tab-content" style="display: none;">
+        <div class="tab-header">
+            <div class="tab-title">
+                <span class="tab-emoji">📘</span>
+                <h2>Estudos</h2>
+            </div>
+            <button class="close-tab-btn" data-tab="estudos">×</button>
+        </div>
+        <div class="add-section">
+            <input type="text" id="input-estudos" placeholder="Adicionar novo estudo..." class="add-input">
+            <button class="add-btn" data-tab="estudos">Adicionar</button>
+        </div>
+        <div class="items-list" id="list-estudos"></div>
+        <div class="stats-section" id="stats-estudos" style="display: none;"></div>
+    </div>
+
+    <div id="tab-simulados" class="tab-content" style="display: none;">
+        <div class="tab-header">
+            <div class="tab-title">
+                <span class="tab-emoji">🧠</span>
+                <h2>Simulados</h2>
+            </div>
+            <button class="close-tab-btn" data-tab="simulados">×</button>
+        </div>
+        <div class="add-section">
+            <input type="text" id="input-simulados" placeholder="Adicionar novo simulado..." class="add-input">
+            <button class="add-btn" data-tab="simulados">Adicionar</button>
+        </div>
+        <div class="items-list" id="list-simulados"></div>
+        <div class="stats-section" id="stats-simulados" style="display: none;"></div>
+    </div>
+
+    <div id="tab-treinos" class="tab-content" style="display: none;">
+        <div class="tab-header">
+            <div class="tab-title">
+                <span class="tab-emoji">💪</span>
+                <h2>Treinos</h2>
+            </div>
+            <button class="close-tab-btn" data-tab="treinos">×</button>
+        </div>
+        <div class="add-section">
+            <input type="text" id="input-treinos" placeholder="Adicionar novo treino..." class="add-input">
+            <button class="add-btn" data-tab="treinos">Adicionar</button>
+        </div>
+        <div class="items-list" id="list-treinos"></div>
+        <div class="stats-section" id="stats-treinos" style="display: none;"></div>
+    </div>
+
+    <div id="tab-materiais" class="tab-content" style="display: none;">
+        <div class="tab-header">
+            <div class="tab-title">
+                <span class="tab-emoji">🗂️</span>
+                <h2>Materiais</h2>
+            </div>
+            <button class="close-tab-btn" data-tab="materiais">×</button>
+        </div>
+        <div class="add-section">
+            <input type="text" id="input-materiais" placeholder="Adicionar novo material..." class="add-input">
+            <button class="add-btn" data-tab="materiais">Adicionar</button>
+        </div>
+        <div class="items-list" id="list-materiais"></div>
+        <div class="stats-section" id="stats-materiais" style="display: none;"></div>
+    </div>
+
+    <div id="tab-progresso" class="tab-content" style="display: none;">
+        <div class="tab-header">
+            <div class="tab-title">
+                <span class="tab-emoji">📊</span>
+                <h2>Progresso</h2>
+            </div>
+            <button class="close-tab-btn" data-tab="progresso">×</button>
+        </div>
+        <div class="add-section">
+            <input type="text" id="input-progresso" placeholder="Adicionar meta de progresso..." class="add-input">
+            <button class="add-btn" data-tab="progresso">Adicionar</button>
+        </div>
+        <div class="items-list" id="list-progresso"></div>
+        <div class="stats-section" id="stats-progresso" style="display: none;"></div>
+    </div>
+
+    <div id="tab-configuracoes" class="tab-content" style="display: none;">
+        <div class="tab-header">
+            <div class="tab-title">
+                <span class="tab-emoji">⚙️</span>
+                <h2>Configurações</h2>
+            </div>
+            <button class="close-tab-btn" data-tab="configuracoes">×</button>
+        </div>
+        <div class="add-section">
+            <input type="text" id="input-configuracoes" placeholder="Adicionar configuração..." class="add-input">
+            <button class="add-btn" data-tab="configuracoes">Adicionar</button>
+        </div>
+        <div class="items-list" id="list-configuracoes"></div>
+        <div class="stats-section" id="stats-configuracoes" style="display: none;"></div>
+    </div>
+</main>
+
+    <main class="main-content">
+        <!-- Formulário de Adição -->
+        <div id="addForm" class="add-form hidden">
+            <h2>Adicionar Novo Simulado</h2>
+            <form id="simuladoForm" class="form-grid">
+                <input type="text" id="nomeSimulado" placeholder="Nome do simulado" required>
+                <input type="date" id="dataSimulado" required>
+                <input type="number" id="totalQuestoes" placeholder="Total de questões" required>
+
+                <div class="select-wrapper">
+                    <select id="disciplinaSelect" required>
+                        <option value="">Selecione a disciplina</option>
+                    </select>
+                    <i class="fas fa-chevron-down select-arrow"></i>
+                </div>
+
+                <input type="text" id="tempoPrevisto" placeholder="Tempo previsto (ex: 2h 30min)" required>
+
+                <div class="status-section">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="simuladoRespondido" onchange="toggleRespondidoFields()">
+                        <span class="checkmark"></span>
+                        Simulado já foi respondido
+                    </label>
+                </div>
+
+                <div id="respondidoFields" class="respondido-fields hidden">
+                    <input type="number" id="questoesRespondidas" placeholder="Questões respondidas" min="0">
+                    <input type="number" id="questoesAcertadas" placeholder="Questões acertadas" min="0">
+                    <input type="text" id="tempoGasto" placeholder="Tempo gasto (ex: 2h 15min)">
+                    <div class="percentage-display">
+                        <span>Porcentagem: </span>
+                        <span id="porcentagemCalculada">0%</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    <i class="fas fa-save"></i>
+                    Salvar Simulado
+                </button>
+            </form>
+        </div>
+
+        <!-- Estatísticas -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-content">
+                    <div class="stat-info">
+                        <p class="stat-label">Total de Simulados</p>
+                        <p class="stat-value" id="totalSimulados">0</p>
+                    </div>
+                    <i class="fas fa-bullseye stat-icon"></i>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-content">
+                    <div class="stat-info">
+                        <p class="stat-label">Média Geral</p>
+                        <p class="stat-value" id="mediaGeral">0%</p>
+                    </div>
+                    <i class="fas fa-chart-line stat-icon"></i>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-content">
+                    <div class="stat-info">
+                        <p class="stat-label">Último Simulado</p>
+                        <p class="stat-value" id="ultimoSimulado">0%</p>
+                    </div>
+                    <i class="fas fa-clock stat-icon"></i>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-content">
+                    <div class="stat-info">
+                        <p class="stat-label">Tendência</p>
+                        <div class="tendencia-display" id="tendenciaDisplay">
+                            <i class="fas fa-minus tendencia-icon"></i>
+                            <span class="tendencia-text">Estável</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <!-- Agenda de Simulados Futuros -->
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="section-title">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h2>Agenda Futura</h2>
+                    </div>
+                    <button class="btn-add-small" onclick="toggleFuturoForm()">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+
+                <div id="futuroForm" class="futuro-form hidden">
+                    <form id="futuroFormElement" class="futuro-form-grid">
+                        <input type="text" id="nomeFuturo" placeholder="Nome do simulado" required>
+                        <input type="date" id="dataFuturo" required>
+                        <div class="select-wrapper">
+                            <select id="disciplinaFuturo" required>
+                                <option value="">Selecione a disciplina</option>
+                            </select>
+                            <i class="fas fa-chevron-down select-arrow"></i>
+                        </div>
+                        <input type="text" id="tempoPrevistoFuturo" placeholder="Tempo previsto" required>
+                        <button type="submit" class="btn-submit-small">
+                            Agendar Simulado
+                        </button>
+                    </form>
+                </div>
+
+                <div id="agendaList" class="agenda-list">
+                    <div class="empty-state">
+                        <i class="fas fa-calendar-alt"></i>
+                        <p>Nenhum simulado agendado</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ranking de Usuários -->
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="section-title">
+                        <i class="fas fa-trophy"></i>
+                        <h2>Ranking de Usuários</h2>
+                    </div>
+                </div>
+
+                <div id="rankingList" class="ranking-list">
+                    <div class="loading-state">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Carregando ranking...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Histórico de Simulados -->
+        <div id="historicoSection" class="section-card hidden">
+            <div class="section-header">
+                <div class="section-title">
+                    <i class="fas fa-book-open"></i>
+                    <h2>Histórico de Simulados</h2>
+                </div>
+            </div>
+
+            <div id="historicoList" class="historico-grid">
+                <!-- Simulados serão inseridos aqui -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    <script src="simulados.js"></script>
 </body>
+
 </html>

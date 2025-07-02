@@ -1,45 +1,255 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Materiais - Gerenciador Moderno</title>
+    <link rel="stylesheet" href="materias.css">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/page.css">
 </head>
-<body>
-    <div class="container">
-        <header class="page-header">
-            <a href="home.html" class="back-btn">
-                <span>←</span>
-                <span>Voltar</span>
-            </a>
-            <div class="page-title">
-                <div class="page-icon">📋</div>
-                <h1>Materiais</h1>
+
+<!-- Botão hambúrguer -->
+<button id="hamburger-btn" class="hamburger-btn" aria-label="Abrir menu">
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+</button>
+
+<!-- Sidebar -->
+<aside id="sidebar1" class="sidebar1">
+
+
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar">
+            <!-- Sidebar Header -->
+            <div class="sidebar-header">
+                <h2>Menu Principal</h2>
+                <button id="close-btn" class="close-btn" aria-label="Close menu">
+                    <span class="close-icon">×</span>
+                </button>
             </div>
-        </header>
 
-        <main class="page-content">
-            <div class="add-section">
-                <input type="text" id="item-input" placeholder="Adicionar novo material..." class="add-input">
-                <button class="add-btn" onclick="addItem()">Adicionar</button>
-            </div>
 
-            <div class="stats-toggle">
-                <button class="stats-btn" onclick="toggleStats()">📊 Mostrar Estatísticas</button>
-            </div>
+    <!-- Menu Items -->
+    <nav class="sidebar-nav">
+        <ul class="menu-list">
+            <li>
+                <a href="rotinas.html" class="menu-item">
+                    <div class="menu-icon-group">
+                        <span class="menu-emoji">📅</span>
+                        <span class="menu-text">Rotinas</span>
+                    </div>
+                    <span class="item-count" id="count-rotinas">0</span>
+                </a>
+            </li>
+            <li>
+                <a href="estudos.html" class="menu-item">
+                    <div class="menu-icon-group">
+                        <span class="menu-emoji">📘</span>
+                        <span class="menu-text">Estudos</span>
+                    </div>
+                    <span class="item-count" id="count-estudos">0</span>
+                </a>
+            </li>
+            <li>
+                <a href="simulados.html" class="menu-item">
+                    <div class="menu-icon-group">
+                        <span class="menu-emoji">🧠</span>
+                        <span class="menu-text">Simulados</span>
+                    </div>
+                    <span class="item-count" id="count-simulados">0</span>
+                </a>
+            </li>
+            <li>
+                <a href="treinos.html" class="menu-item">
+                    <div class="menu-icon-group">
+                        <span class="menu-emoji">💪</span>
+                        <span class="menu-text">Treinos</span>
+                    </div>
+                    <span class="item-count" id="count-treinos">0</span>
+                </a>
+            </li>
+            <li>
+                <a href="materias.html" class="menu-item">
+                    <div class="menu-icon-group">
+                        <span class="menu-emoji">🗂️</span>
+                        <span class="menu-text">Materias</span>
+                    </div>
+                    <span class="item-count" id="count-materias">0</span>
+                </a>
+            </li>
+            <li>
+                <a href="progresso.html" class="menu-item">
+                    <div class="menu-icon-group">
+                        <span class="menu-emoji">📊</span>
+                        <span class="menu-text">Progresso</span>
+                    </div>
+                    <span class="item-count" id="count-progresso">0</span>
+                </a>
+            </li>
+            <li>
+                <a href="configuracoes.html" class="menu-item">
+                    <div class="menu-icon-group">
+                        <span class="menu-emoji">⚙️</span>
+                        <span class="menu-text">Configurações</span>
+                    </div>
+                    <span class="item-count" id="count-configuracoes">0</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 
-            <div class="stats-section" id="stats-section"></div>
+    <!-- Sidebar Footer -->
+    <div class="sidebar-footer">
+        <p class="version">Versão 1.0</p>
+        <div class="status">
+            <div class="status-dot"></div>
+            <span>Sistema Online</span>
+        </div>
+    </div>
+</aside>
 
-            <div class="items-list" id="items-list"></div>
-        </main>
+
+<!-- Main Content -->
+<main class="main-content">
+    <!-- Welcome Screen -->
+    <div id="welcome-screen" class="welcome-content">
+        <div class="welcome-card">
+        </div>
     </div>
 
-    <script src="js/common.js"></script>
-    <script src="js/page-manager.js"></script>
-    <script>
-        const pageManager = new PageManager('materiais');
-    </script>
+    <!-- Tabs -->
+    <div id="tab-estudos" class="tab-content" style="display: none;">
+        <div class="tab-header">
+            <div class="tab-title">
+                <span class="tab-emoji">📘</span>
+                <h2>Estudos</h2>
+            </div>
+            <button class="close-tab-btn" data-tab="estudos">×</button>
+        </div>
+        <div class="add-section">
+            <input type="text" id="input-estudos" placeholder="Adicionar novo estudo..." class="add-input">
+            <button class="add-btn" data-tab="estudos">Adicionar</button>
+        </div>
+        <div class="items-list" id="list-estudos"></div>
+        <div class="stats-section" id="stats-estudos" style="display: none;"></div>
+    </div>
+
+    <div id="tab-simulados" class="tab-content" style="display: none;">
+        <div class="tab-header">
+            <div class="tab-title">
+                <span class="tab-emoji">🧠</span>
+                <h2>Simulados</h2>
+            </div>
+            <button class="close-tab-btn" data-tab="simulados">×</button>
+        </div>
+        <div class="add-section">
+            <input type="text" id="input-simulados" placeholder="Adicionar novo simulado..." class="add-input">
+            <button class="add-btn" data-tab="simulados">Adicionar</button>
+        </div>
+        <div class="items-list" id="list-simulados"></div>
+        <div class="stats-section" id="stats-simulados" style="display: none;"></div>
+    </div>
+
+    <div id="tab-treinos" class="tab-content" style="display: none;">
+        <div class="tab-header">
+            <div class="tab-title">
+                <span class="tab-emoji">💪</span>
+                <h2>Treinos</h2>
+            </div>
+            <button class="close-tab-btn" data-tab="treinos">×</button>
+        </div>
+        <div class="add-section">
+            <input type="text" id="input-treinos" placeholder="Adicionar novo treino..." class="add-input">
+            <button class="add-btn" data-tab="treinos">Adicionar</button>
+        </div>
+        <div class="items-list" id="list-treinos"></div>
+        <div class="stats-section" id="stats-treinos" style="display: none;"></div>
+    </div>
+
+    <div id="tab-materiais" class="tab-content" style="display: none;">
+        <div class="tab-header">
+            <div class="tab-title">
+                <span class="tab-emoji">🗂️</span>
+                <h2>Materiais</h2>
+            </div>
+            <button class="close-tab-btn" data-tab="materiais">×</button>
+        </div>
+        <div class="add-section">
+            <input type="text" id="input-materiais" placeholder="Adicionar novo material..." class="add-input">
+            <button class="add-btn" data-tab="materiais">Adicionar</button>
+        </div>
+        <div class="items-list" id="list-materiais"></div>
+        <div class="stats-section" id="stats-materiais" style="display: none;"></div>
+    </div>
+
+    <div id="tab-progresso" class="tab-content" style="display: none;">
+        <div class="tab-header">
+            <div class="tab-title">
+                <span class="tab-emoji">📊</span>
+                <h2>Progresso</h2>
+            </div>
+            <button class="close-tab-btn" data-tab="progresso">×</button>
+        </div>
+        <div class="add-section">
+            <input type="text" id="input-progresso" placeholder="Adicionar meta de progresso..." class="add-input">
+            <button class="add-btn" data-tab="progresso">Adicionar</button>
+        </div>
+        <div class="items-list" id="list-progresso"></div>
+        <div class="stats-section" id="stats-progresso" style="display: none;"></div>
+    </div>
+
+    <div id="tab-configuracoes" class="tab-content" style="display: none;">
+        <div class="tab-header">
+            <div class="tab-title">
+                <span class="tab-emoji">⚙️</span>
+                <h2>Configurações</h2>
+            </div>
+            <button class="close-tab-btn" data-tab="configuracoes">×</button>
+        </div>
+        <div class="add-section">
+            <input type="text" id="input-configuracoes" placeholder="Adicionar configuração..." class="add-input">
+            <button class="add-btn" data-tab="configuracoes">Adicionar</button>
+        </div>
+        <div class="items-list" id="list-configuracoes"></div>
+        <div class="stats-section" id="stats-configuracoes" style="display: none;"></div>
+    </div>
+</main>
+<div class="container">
+    <header class="page-header">
+        <a href="home.html" class="back-btn">
+            <span>←</span>
+            <span>Voltar</span>
+        </a>
+        <div class="page-title">
+            <div class="page-icon">📋</div>
+            <h1>Materiais</h1>
+        </div>
+    </header>
+
+    <main class="page-content">
+        <div class="add-section">
+            <input type="text" id="item-input" placeholder="Adicionar novo material..." class="add-input">
+            <button class="add-btn" onclick="addItem()">Adicionar</button>
+        </div>
+
+        <div class="stats-toggle">
+            <button class="stats-btn" onclick="toggleStats()">📊 Mostrar Estatísticas</button>
+        </div>
+
+        <div class="stats-section" id="stats-section"></div>
+
+        <div class="items-list" id="items-list"></div>
+    </main>
+</div>
+
+<script src="materias.js"></script>
+<script src="js/common.js"></script>
+<script src="js/page-manager.js"></script>
+<script>
+    const pageManager = new PageManager('materiais');
+</script>
 </body>
 </html>
